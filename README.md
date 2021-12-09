@@ -16,7 +16,7 @@ Cieľom zadania je vytvoriť jednoduchú aplikáciu v Reacte, ktorá slúži ako
     *  potvrdiť súhlas so spracovaním osobných údajov (povinné pole)
     *  odoslať zvalidovaný formulár, prípadne zrozumiteľne oznámiť používateľovi chybový stav
 
-Pre účely zadania sme vytvorili 2 jednoduché API endpointy - GET zoznamu útulkov zapojených do projektu a POST na odoslanie obsahu formuláru. Dokumentáciu k nim nájdete na nasledovnom odkaze: https://frontend-assignment-api.goodrequest.com/apidoc/
+Pre účely zadania sme vytvorili 2 jednoduché API endpointy - GET zoznamu útulkov zapojených do projektu a POST na odoslanie obsahu formuláru. Dokumentáciu k nim nájdete na nasledovnom odkaze: https://frontend-assignment-api.goodrequest.dev/apidoc/
 
 Grafické podklady pre zadanie nájdete na nasledovnom odkaze (registrácia do toolu Figma je zdarma):
 https://www.figma.com/file/FyxU4Zzp54tOrmQBNTly7G/GoodRequest-Frontend-Assignment
