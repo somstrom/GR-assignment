@@ -68,7 +68,7 @@ The aim of the assignment is to create a simple application in React that serves
     *  confirm consent to the processing of personal data (mandatory field)
     *  send a validated form, or clearly inform the user about an error condition
     
-For the purposes of the assignment, we created 2 simple API endpoints - GET the list of shelters involved in the project and POST to submit the content of the form. Documentation for them can be found at the following link: https://frontend-assignment-api.goodrequest.com/apidoc/
+For the purposes of the assignment, we created 2 simple API endpoints - GET the list of shelters involved in the project and POST to submit the content of the form. Documentation for them can be found at the following link: https://frontend-assignment-api.goodrequest.dev/apidoc/
 
 Graphic materials for the assignment can be found at the following link (registration in Figma tool is free): https://www.figma.com/file/FyxU4Zzp54tOrmQBNTly7G/GoodRequest-Frontend-Assignment
 
