@@ -1,0 +1,22 @@
+.header {
+    width: 100%;
+    color: #9F9F9F;
+    font-size: 0.875rem;
+    font-weight: 600;
+    height: 40px;
+    background-color: #FEFEFE;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+}
+
+.header-container {
+    display: flex;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.header-left , .header-right{
+    display: flex;
+    align-items: center;
+}
