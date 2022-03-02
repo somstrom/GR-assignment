@@ -1,13 +1,16 @@
 import React from "react";
 
+import './Form.css'
+
 type props = {
-  children: React.ReactNode;
+  children: React.ReactNode,
+  title: string
 };
 
-const Form = ({ children }: props) => {
+const Form = ({ children, title }: props) => {
   return (
     <form className="form-wrapper">
-      <p className="form-tilte"></p>
+      <p className="form-tilte">{title}</p>
       {children}
     </form>
   );
