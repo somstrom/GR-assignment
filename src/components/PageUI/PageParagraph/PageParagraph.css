@@ -1,3 +1,11 @@
+.paragraph-wrapper {
+  margin: 1.3rem 0 1rem 0;
+}
+
+.paragraph-wrapper p {
+  margin-bottom: 0.5rem;
+}
+
 .paragraph-title {
   font-weight: 800;
   font-size: 0.875rem;
