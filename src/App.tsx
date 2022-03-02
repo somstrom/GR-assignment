@@ -1,18 +1,33 @@
-import React from 'react';
+import React from "react";
+import {
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
-import LandingPage from './containers/LandingPage/LandingPage';
+import LandingPage from "./containers/LandingPage/LandingPage";
 import Footer from "./components/Footer/Footer";
-import FinalPage from './containers/FinalPage/FinalPage';
-import FormPage from './containers/FormPage/FormPage';
+import FinalPage from "./containers/FinalPage/FinalPage";
+import FormPage from "./containers/FormPage/FormPage";
 
 function App() {
   return (
-    <>
-      <FormPage></FormPage>
-      {/* <FinalPage></FinalPage> */}
-      {/* <LandingPage></LandingPage> */}
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <LandingPage />
+        </Route>
+        <Route path="/form" exact>
+          <FormPage />
+        </Route>
+        <Route path="/final" exact>
+          <FinalPage />
+        </Route>
+        <Redirect to="/" />
+      </Switch>
       <Footer></Footer>
-    </>
+    </Router>
   );
 }
 

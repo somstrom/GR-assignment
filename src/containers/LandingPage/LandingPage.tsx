@@ -23,7 +23,7 @@ const LandingPage = () => {
    *          -> skor nechat obrazok stale
    * */
   return (
-    <>
+    <React.Fragment>
       <Header></Header>
       <PageIndicator activePage={[true, false, false]}></PageIndicator>
       <PageTitle title={'Vyberte si možnosť, ako chcete pomôcť'}></PageTitle>
@@ -31,7 +31,7 @@ const LandingPage = () => {
       <CheckBox id={'check-box-id'} label={'Súhlasím so spracovaním mojich osobných údajov'}></CheckBox>
       <PageImage></PageImage>
       <div style={{ height: "100vh" }}></div>
-    </>
+    </React.Fragment>
   );
 };
 
