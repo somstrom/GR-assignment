@@ -1,7 +1,12 @@
+.check-box__wrapper {
+  margin: 2.8rem 0;
+}
+
 .check-box__wrapper label {
   color: #2f2f2f;
   line-height: 21px;
-  padding-left: 5px;
+  padding-left: 1rem;
+  cursor: pointer;
 }
 
 .check-box__wrapper input {
@@ -13,6 +18,7 @@
   box-sizing: border-box;
   border-radius: 8px;
   vertical-align:middle;
+  cursor: pointer;
 }
 
 .check-box__wrapper input:checked:after {
