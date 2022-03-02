@@ -5,11 +5,12 @@ import './PrimaryButton.css'
 type props = {
   context: string;
   type?: string | undefined;
+  disabled: boolean
 };
 
-const PrimaryButton = ({ context, type }: props) => {
+const PrimaryButton = ({ context, type, disabled }: props) => {
   return (
-      <button className="button-primary">{context}</button>
+      <button className="button-primary" disabled={disabled}>{context}</button>
   );
 };
 

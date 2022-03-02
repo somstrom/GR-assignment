@@ -13,5 +13,9 @@
   font-size: 0.875rem;
   color: white;
   line-height: 19px;
-  
+  cursor: pointer;
+}
+
+.buton-primary:disabled {
+  color:red;
 }
