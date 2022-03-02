@@ -1,0 +1,39 @@
+.react-tel-input {
+    font-size: 14px;
+    line-height: 1.3rem;
+    outline: none;
+    color: #9F9F9F;
+    border: none;
+    padding: 0.1rem 1.5rem 1rem 1.5rem;
+}
+
+.react-tel-input .flag-dropdown {
+    border: none;
+    background-color: white;
+}
+
+
+.react-tel-input .form-control {
+    border: none;
+    width: 80%;
+    margin: 0;
+    height: 1rem;
+    padding: 0 0 0 20px;
+    font-size: 1rem;
+}
+
+/*
+.react-tel-input .country-list {
+    width: 400px;
+}*/
+
+.react-tel-input .selected-flag {
+    padding: 0 0 1px 0;
+    margin-top: 2px;
+    width: 1.25rem;
+    height: 1rem;
+}
+
+.arrow {
+    visibility: hidden;
+}
