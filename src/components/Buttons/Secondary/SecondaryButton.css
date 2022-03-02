@@ -1,0 +1,10 @@
+.button-secondary {
+    padding: 1.25rem 1.5rem;
+    background: #F3E2D9;
+    border-radius: 100px;
+    border: none;
+    font-weight: 800;
+    font-size: 0.875rem;
+    line-height: 19px;
+    color: #2F2F2F;
+}
