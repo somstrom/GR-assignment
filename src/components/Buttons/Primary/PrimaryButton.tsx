@@ -5,7 +5,7 @@ import './PrimaryButton.css'
 type props = {
   context: string;
   type?: string | undefined;
-  disabled: boolean
+  disabled?: boolean
 };
 
 const PrimaryButton = ({ context, type, disabled }: props) => {
