@@ -1,0 +1,9 @@
+.paragraph-title {
+  font-weight: 800;
+  font-size: 0.875rem;
+}
+
+.paragraph-info, .paragraph-title {
+    line-height: 19px;
+    color: #2F2F2F;
+}
