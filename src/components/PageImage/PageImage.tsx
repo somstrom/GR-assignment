@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './PageImage.css'
+
 const PageImage = () => {
   return (
-    <img src={'./page-image.png'} alt="pejsek"/>
+    <img className="page-picture" src={'./page-image.png'} alt="pejsek"/>
   )
 }
 
