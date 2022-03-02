@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Play&family=Wellfleet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+* {
+    font-family: 'Play', sans-serif;
+}
+
+p {
+    margin: 0;
+}
 
 body {
     margin: 0;
-    font-family: 'Play', sans-serif;
 }
 
 input::placeholder {
