@@ -1,7 +1,12 @@
 import React from "react";
 
 import Header from "../../components/Header/Header";
+import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import Form from "../Form/Form"
+import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
+import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
+import CheckBox from "../../components/Form/CheckBox/CheckBox";
+import PageImage from "../../components/PageImage/PageImage";
 
 const LandingPage = () => {
   /**
@@ -21,8 +26,13 @@ const LandingPage = () => {
   return (
     <>
       <Header></Header>
+      <PageIndicator activePage={[true, false, false]}></PageIndicator>
+      <PageTitle title={'Vyberte si možnosť, ako chcete pomôcť'}></PageTitle>
+      <PageParagraph titleParagraph={'Akou formou chcete pomôcť'} infoParagraph={'Chcem finančne prispieť celej nadácií'}></PageParagraph>
       <Form></Form>
-      {/* <div style={{ height: "100vh" }}></div> */}
+      <CheckBox id={'check-box-id'} label={'Súhlasím so spracovaním mojich osobných údajov'}></CheckBox>
+      <PageImage></PageImage>
+      <div style={{ height: "100vh" }}></div>
     </>
   );
 };

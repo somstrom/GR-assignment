@@ -2,6 +2,8 @@ import React from "react";
 
 import PhoneNumberInput from "../../components/Form/PhoneNumberInput/PhoneInput";
 import TextInput from "../../components/Form/TextInput/TextInput";
+import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
+import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton";
 
 const Form = () => {
   return (
@@ -32,7 +34,8 @@ const Form = () => {
         label={"Telefonné číslo"}
         id={'input-phone'}
       ></PhoneNumberInput>
-      <button type="submit">Submit</button>
+      <PrimaryButton context={'Pokračovať'} type={'Submit'}></PrimaryButton>
+      <SecondaryButton context={'Späť'} type={'Submit'}></SecondaryButton>
     </form>
   );
 };
