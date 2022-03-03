@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-import "./TextInput.css";
+import {
+  TextInputWrapper,
+  StyledTextInput,
+  StyledTextLabel,
+} from "./StyledTextInput";
 
+// import "./TextInput.css";
 
 type props = {
   placeholder: string;
@@ -12,17 +17,24 @@ type props = {
     start: number;
     end: number;
   };
-  id: string
+  id: string;
 };
 
-const TextInput = ({ placeholder, label, type, isRequired, range, id }: props) => {
+const TextInput = ({
+  placeholder,
+  label,
+  type,
+  isRequired,
+  range,
+  id,
+}: props) => {
   const [focus, setFocus] = useState<boolean>(false);
 
   return (
     <>
-      <div className={`full-input ${focus ? "focused" : "not-focused"}`}>
-        <label htmlFor={id}>{label}</label>
-        <input
+      <TextInputWrapper focus={focus}>
+        <StyledTextLabel htmlFor={id}>{label}</StyledTextLabel>
+        <StyledTextInput
           onBlur={() => setFocus(false)}
           onFocus={() => setFocus(true)}
           id={id}
@@ -31,8 +43,8 @@ const TextInput = ({ placeholder, label, type, isRequired, range, id }: props) =
           required={isRequired}
           minLength={range && range.start}
           maxLength={range && range.end}
-        ></input>
-      </div>
+        />
+      </TextInputWrapper>
     </>
   );
 };
