@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import Header from "../../components/Header/Header";
 import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
-import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
-import CheckBox from "../../components/Form/CheckBox/CheckBox";
 import PageImage from "../../components/PageImage/PageImage";
+import PageContent from "../../components/PageContent/PageContent";
+import Container from "../../components/Container/Container";
+import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
+import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
+import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
+import DropDownInput from "../../components/Form/DropDownInput/DropDownInput";
+import OptionalButton from '../../components/Buttons/Optional/OptionalButton'
+
+
+type shelter = {
+  id: number;
+  name: string;
+};
 
 const LandingPage = () => {
   /**
@@ -22,16 +33,55 @@ const LandingPage = () => {
    * riesenie responzivnosti? -> obrazok je uzky, varianta bez obrazku pri malom rozliseni ?
    *          -> skor nechat obrazok stale
    * */
+
+  const [sheltersList, setSheltersList] = useState<shelter[] | null>(null);
+
+  useEffect(() => {
+    axios
+      .get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters")
+      .then((res) => {
+        const shelters = res.data.shelters;
+        setSheltersList(shelters);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const moneyButtons: number[] = [5, 10, 20, 30, 50, 100];
+
+  const [activeButton, setActiveButton] = useState<number>(0);
+  useEffect(() => {
+    console.log(activeButton);
+  }, [activeButton])
+
   return (
-    <React.Fragment>
-      <Header></Header>
-      <PageIndicator activePage={[true, false, false]}></PageIndicator>
-      <PageTitle title={'Vyberte si možnosť, ako chcete pomôcť'}></PageTitle>
-      <PageParagraph titleParagraph={'Akou formou chcete pomôcť'} infoParagraph={'Chcem finančne prispieť celej nadácií'}></PageParagraph>
-      <CheckBox id={'check-box-id'} label={'Súhlasím so spracovaním mojich osobných údajov'}></CheckBox>
-      <PageImage></PageImage>
-      <div style={{ height: "100vh" }}></div>
-    </React.Fragment>
+    <>
+      <div style={{ height: "40px", width: "100%" }}></div>
+      <Container>
+        <PageContent>
+          <PageIndicator activePage={[true, false, false]} />
+          <PageTitle title="Vyberte si možnosť, ako chcete pomôcť" />
+          <OptionalButton />
+          <DropDownInput
+            id="dorp-down-id"
+            label="Útulok"
+            placeholder="Vyberte útulok zo zoznamu"
+            data={sheltersList}
+          />
+          <ButtonsContainer>
+            {moneyButtons.map((value: number): any => (
+              <TernaryButton context={value} key={value} setActiveButton={setActiveButton} />
+            ))}
+            <TernaryButton setActiveButton={setActiveButton} type="number" />
+          </ButtonsContainer>
+          <ButtonsContainer>
+            <PrimaryButton context="Pokračovať" />
+          </ButtonsContainer>
+        </PageContent>
+        <PageImage />
+      </Container>
+    </>
   );
 };
 

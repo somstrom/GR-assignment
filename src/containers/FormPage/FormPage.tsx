@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Header from "../../components/Header/Header";
 import PageImage from "../../components/PageImage/PageImage";
@@ -14,6 +14,7 @@ import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton";
 
 const FormPage = () => {
+
   return (
     <>
       <Header />
