@@ -1,7 +1,6 @@
 import React from "react";
 
-import './SecondaryButton.css'
-
+import { ButtonSecondary } from "./StyledSecondaryButton";
 
 type props = {
   context: string;
@@ -10,7 +9,7 @@ type props = {
 
 const SecondaryButton = ({ context, type }: props) => {
   return (
-      <button className="button-secondary">{context}</button>
+    <ButtonSecondary>{context}</ButtonSecondary>
   );
 };
 

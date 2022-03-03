@@ -1,16 +1,18 @@
 import React from "react";
 
-import './PrimaryButton.css'
+import { ButtonPrimary } from "./StyledPrimaryButton";
 
 type props = {
   context: string;
   type?: string | undefined;
-  disabled?: boolean
+  disabled?: boolean;
 };
 
 const PrimaryButton = ({ context, type, disabled }: props) => {
   return (
-      <button className="button-primary" disabled={disabled}>{context}</button>
+    <ButtonPrimary disabled={disabled}>
+      {context}
+    </ButtonPrimary>
   );
 };
 
