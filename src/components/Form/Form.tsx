@@ -1,18 +1,18 @@
 import React from "react";
 
-import './Form.css'
+import { FormParagraph, FormWrapper } from "./StyledForm";
 
 type props = {
-  children: React.ReactNode,
-  title: string
+  children: React.ReactNode;
+  title: string;
 };
 
 const Form = ({ children, title }: props) => {
   return (
-    <form className="form-wrapper">
-      <p className="form-tilte">{title}</p>
+    <FormWrapper>
+      <FormParagraph>{title}</FormParagraph>
       {children}
-    </form>
+    </FormWrapper>
   );
 };
 
