@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 type props = {
     singleChildren: boolean,
+    actionButtons?: boolean
 }
 
 export const StyledContainerBtn = styled.div<props>`
