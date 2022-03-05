@@ -9,14 +9,15 @@ import {
 type props = {
   context?: number;
   type?: string;
-  setActiveButton: React.Dispatch<React.SetStateAction<number>>;
+  handleButtonClick: () => void;
+  isActive: boolean;
 };
 
-const TernaryButton = ({ context, type, setActiveButton }: props) => {
+const TernaryButton = ({ context, type, handleButtonClick, isActive }: props) => {
   if (type === "number") {
     return (
-      <NumberButton>
-        <TernaryButtonInput
+      <NumberButton isActive={isActive}>
+        <TernaryButtonInput 
           type="number"
           id="numeric-input-id"
           inputMode="numeric"
@@ -29,7 +30,7 @@ const TernaryButton = ({ context, type, setActiveButton }: props) => {
   }
 
   return (
-    <ButtonTernary onClick={() => setActiveButton(context || 0)}>
+    <ButtonTernary isActive={isActive} onClick={handleButtonClick}>
       {context}€
     </ButtonTernary>
   );

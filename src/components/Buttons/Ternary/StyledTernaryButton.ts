@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const ButtonTernary = styled("div")`
+type props = {
+  isActive: boolean;
+};
+
+export const ButtonTernary = styled("div")<props>`
   padding: 1rem;
   background: #ffffff;
   border: 1px solid #dfdfdf;
@@ -9,13 +13,13 @@ export const ButtonTernary = styled("div")`
   font-style: normal;
   font-weight: 800;
   line-height: 21px;
-  color: #2f2f2f;
+  color: ${(props) => (props.isActive ? "white;" : "#2f2f2f;")}
   max-width: 80px;
-  &:focus {
-    color: #ffffff;
-    background: linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);
-    border: none;
-  }
+  background: ${(props) =>
+    props.isActive
+      ? "linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);"
+      : "white;"}
+
 `;
 
 export const NumberButton = styled(ButtonTernary)`
@@ -24,17 +28,11 @@ export const NumberButton = styled(ButtonTernary)`
   align-items: center;
 `;
 
-export const TernaryButtonInput = styled("input")`
+export const TernaryButtonInput = styled.input`
   -moz-appearance: textfield;
   width: 70%;
   border: none;
   border-bottom: solid 1px gray;
-  &:focus + ${NumberButton} {
-    background: linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);
-  }
-  &:focus {
-    outline: none;
-  }
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
