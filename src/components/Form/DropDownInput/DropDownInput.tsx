@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import '../TextInput/TextInput.css'
 
-import "./DropDownInput.css";
 import {
   DropDownContainer,
   DropDownLabel,
@@ -26,6 +25,7 @@ type props = {
   id: string;
   data: shelter[] | null,
   onChange: any;
+  defaultValue: string
 };
 
 const DropDownInput = ({
@@ -35,7 +35,8 @@ const DropDownInput = ({
   isRequired,
   id,
   data,
-  onChange
+  onChange,
+  defaultValue
 }: props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -59,7 +60,7 @@ const DropDownInput = ({
         <DropDownContainer>
           <DropDownLabel>Útulok</DropDownLabel>
           <DropDownPlaceholder>
-            {selectedOption || "Vyberte útulok zo zoznamu"}
+            {defaultValue !== 'empty' ? defaultValue : selectedOption || "Vyberte útulok zo zoznamu"}
           </DropDownPlaceholder>
         </DropDownContainer>
       </div>
