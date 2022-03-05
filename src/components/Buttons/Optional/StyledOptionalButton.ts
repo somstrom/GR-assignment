@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
+type props = {
+  isActive: boolean;
+};
+
 export const OptionalButtonIcon = styled("img")`
-    widht: 50%;
-    height: 50%;
-    z-index: 5;
+  widht: 50%;
+  height: 50%;
+  z-index: 5;
 `;
 
 export const OptionalButtonTag = styled("p")`
@@ -22,17 +26,18 @@ export const OptionalButtonWrapper = styled("div")`
   border-radius: 2rem;
 `;
 
-export const IconWrapper = styled('div')`
-    background-color: rgb(47, 47, 47, 0.16);
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+export const IconWrapper = styled("div")`
+  background-color: rgb(47, 47, 47, 0.16);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-export const OptionalButtonStyle = styled("button")`
+export const OptionalButtonStyle = styled.button<props>`
+cursor: pointer;
   border: none;
   width: 50%;
   display: flex;
@@ -40,30 +45,27 @@ export const OptionalButtonStyle = styled("button")`
   justify-content: space-between;
   align-items: start;
   padding: 1.5rem;
-  background: #FAF9F9;
-  color: #585757;
-  &:focus {
-    color: white;
-    background: linear-gradient(180deg, #cd8b65 0%, #bb6b3d 100%);
-    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
-      0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
-      0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
-      0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
-      0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
-      0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
-  }
+  color: ${(props) => (props.isActive ? "white;" : "#585757;")}
+  background:  ${(props) =>
+    props.isActive
+      ? "linear-gradient(180deg, #cd8b65 0%, #bb6b3d 100%);"
+      : "#faf9f9;"}
+  box-shadow: ${(props) =>
+    props.isActive
+      ? "box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);"
+      : "none;"}
   &:focus ${OptionalButtonIcon} {
     color: white;
   }
   &:focus ${IconWrapper} {
-      background-color: rgb(47, 47, 47, 0.16);
+    background-color: rgb(47, 47, 47, 0.16);
   }
 `;
 
-export const OptionalButtonLeft = styled(OptionalButtonStyle)`
+export const OptionalButtonLeft = styled(OptionalButtonStyle)<props>`
   border-radius: 2rem 0 0 2rem;
 `;
 
-export const OptionalButtonRight = styled(OptionalButtonStyle)`
+export const OptionalButtonRight = styled(OptionalButtonStyle)<props>`
   border-radius: 0 2rem 2rem 0;
 `;
