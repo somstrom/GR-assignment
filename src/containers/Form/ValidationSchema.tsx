@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const validationSchema = yup.object().shape({
   firstname: yup
     .string()
-    .notRequired()
+    .required()
     .min(2, "Meno musí mať aspoň 2 znaky")
     .max(20, "Meno môže obsahovať najviac 20 znakov")
     .matches(/^[a-zA-Z]+$/, "Meno nemôže obsahovať čísla ani špeciálne znaky"),
