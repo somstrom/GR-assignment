@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
-export const ButtonPrimary = styled.button`
+type props = {
+  disabled?: boolean
+}
+
+export const ButtonPrimary = styled.button<props>`
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);
+  background: ${(props) => props.disabled ? 'rgb(159, 159, 159, 1);' : 'linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);'}
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
     0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
     0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
