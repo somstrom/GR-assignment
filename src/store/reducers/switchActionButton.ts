@@ -30,10 +30,12 @@ export const switchActionButton = (state = initialState, action: Action) => {
     case "SWITCH_ACTION_BUTTON":
       return state.map((button: actionButton) =>
         button.id === action.playload
-          ? ({...button, isActive: true})
-          : ({...button, isActive: false})
+          ? { ...button, isActive: true }
+          : { ...button, isActive: false }
       );
+    case "RESET":
+      return initialState;
     default:
-        return state
+      return state;
   }
 };

@@ -7,14 +7,16 @@ type formData = {
 
 type Action = { type: string; playload: formData };
 
-const initialData = {
+const initialState = {
   lastname: "",
 };
 
-export const formReducer = (state: formData = initialData, action: Action) => {
+export const formReducer = (state: formData = initialState, action: Action) => {
   switch (action.type) {
     case "FILL_UP_FORM_DATA":
-      return state = action.playload;
+      return (state = action.playload);
+    case "RESET":
+      return initialState;
     default:
       return state;
   }

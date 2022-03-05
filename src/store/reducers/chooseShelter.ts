@@ -1,11 +1,21 @@
-type Action = { type: string; playload: string };
+type shelter = {
+    id: number;
+    name: string;
+  };
 
-const initialState = ''
+  type Action = { type: string; playload: shelter };
 
-export const chooseShelter = (state: string = initialState, action: Action) => {
+const initialState = {
+    name: 'empty',
+    id: -1
+}
+
+export const chooseShelter = (state: shelter = initialState, action: Action) => {
     switch (action.type) {
     case "CHANGE_SHELTER":
       return action.playload;
+    case "RESET":
+        return initialState;
     default:
       return state;
   }

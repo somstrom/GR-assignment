@@ -19,10 +19,12 @@ export const switchButton = (state = initialState, action: Action) => {
     case "SWITCH_MONEY_BUTTON":
       const newState = state.map((button: button) =>
         button.value === action.playload
-          ? ({value: button.value, isActive: true})
-          : ({value: button.value, isActive: false})
+          ? { value: button.value, isActive: true }
+          : { value: button.value, isActive: false }
       );
       return newState;
+    case "RESET":
+      return initialState;
     default:
       return state;
   }
