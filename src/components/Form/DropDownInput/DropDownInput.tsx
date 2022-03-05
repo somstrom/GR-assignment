@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
+import '../TextInput/TextInput.css'
+
 import "./DropDownInput.css";
 import {
   DropDownContainer,
@@ -22,7 +24,8 @@ type props = {
   type?: string;
   isRequired?: boolean;
   id: string;
-  data: shelter[] | null
+  data: shelter[] | null,
+  onChange: any;
 };
 
 const DropDownInput = ({
@@ -32,14 +35,14 @@ const DropDownInput = ({
   isRequired,
   id,
   data,
+  onChange
 }: props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-    console.log(data);
-
   const onOptionClicked = (value: string) => () => {
     setSelectedOption(value);
+    onChange(value);
     setIsOpen(false);
   };
 
