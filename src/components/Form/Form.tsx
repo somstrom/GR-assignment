@@ -11,7 +11,7 @@ type props = {
 
 const Form = ({ children, title, onSubmit }: props) => {
   return (
-    <FormWrapper onSubmit={onSubmit}>
+    <FormWrapper autoComplete="off" onSubmit={onSubmit}>
       <PageParagraph titleParagraph={title}></PageParagraph>
       {children}
     </FormWrapper>

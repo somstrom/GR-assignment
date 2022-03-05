@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   TextInputWrapper,
@@ -31,18 +31,17 @@ const TextInput = ({
   register,
 }: props) => {
   const [focus, setFocus] = useState<boolean>(false);
-
   return (
     <>
       <TextInputWrapper focus={focus}>
         <StyledTextLabel htmlFor={id}>{label}</StyledTextLabel>
-        <StyledTextInput
-          onBlur={() => setFocus(false)}
-          onFocus={() => setFocus(true)}
+        <StyledTextInput autoComplete="nope"
           id={id}
           placeholder={placeholder}
           type={type}
           {...register(id)}
+          onBlur={() => setFocus(false)}
+          onFocus={() => setFocus(true)}
         />
       </TextInputWrapper>
     </>
