@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import PageImage from "../../components/PageImage/PageImage";
 import PageContent from "../../components/PageContent/PageContent";
 import Container from "../../components/Container/Container";
-import StyledContainerBtn from "../../components/Buttons/ButtonsContainer";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
 import DropDownInput from "../../components/Form/DropDownInput/DropDownInput";
 import OptionalButton from "../../components/Buttons/Optional/OptionalButton";
-import OptionalButtonsContainer from "../../components/Buttons/Optional/OptionalButtonsContainer";
 import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
-import { StringLocale } from "yup/lib/locale";
 import ParagraphWrapper from "../../components/PageUI/ParagraphWrapper";
-import { changeShelter, switchMoneyButtons, switchActionButtons } from "../../store/actions";
+import {
+  changeShelter,
+  switchMoneyButtons,
+  switchActionButtons,
+  SET_ACCESSIBLE_PAGES
+} from "../../store/actions";
+
 
 type shelter = {
   id: number;
@@ -45,9 +48,14 @@ const LandingPage = () => {
   const moneyButtons: button[] = useSelector(
     (state: any) => state.moneyButtons
   );
+  const chosenShelter: shelter = useSelector(
+    (state: any) => state.chosenShelter
+  );
 
   const dispatch = useDispatch();
-  const [sheltersList, setSheltersList] = useState<shelter[] | null>(null);
+  const [sheltersList, setSheltersList] = useState<shelter[]>([
+    { name: "empty", id: -1 },
+  ]);
 
   useEffect(() => {
     axios
@@ -61,6 +69,10 @@ const LandingPage = () => {
       });
   }, []);
 
+  const handleClick = () => {
+    dispatch(SET_ACCESSIBLE_PAGES([true, true, false]));
+  }
+
   const handleActionsButtonClick = (id: number) => {
     dispatch(switchActionButtons(id));
   };
@@ -70,9 +82,10 @@ const LandingPage = () => {
   };
 
   const handleShelterChange = (shelter: string) => {
-    dispatch(changeShelter(shelter))
-    console.log(shelter);
-  }
+    const finalShelter =
+      sheltersList.find((s: shelter) => s.name === shelter) || sheltersList[0];
+    dispatch(changeShelter(finalShelter));
+  };
 
   return (
     <>
@@ -102,6 +115,7 @@ const LandingPage = () => {
             ></PageParagraph>
           </ParagraphWrapper>
           <DropDownInput
+            defaultValue={chosenShelter.name}
             onChange={handleShelterChange}
             id="dorp-down-id"
             label="Útulok"
@@ -121,8 +135,14 @@ const LandingPage = () => {
             {/* <TernaryButton setActiveButton={setActiveButton} type="number" /> */}
           </ButtonsContainer>
           <ButtonsContainer>
-            <Link to="/form">
-              <PrimaryButton context="Pokračovať" />
+            <Link to="/formular">
+              <PrimaryButton
+                onClick={handleClick}
+                context="Pokračovať"
+                disabled={
+                  actionButtons[0].isActive && chosenShelter.name === "empty"
+                }
+              />
             </Link>
           </ButtonsContainer>
         </PageContent>
