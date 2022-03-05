@@ -18,6 +18,7 @@ type props = {
     end: number;
   };
   id: string;
+  register: any;
 };
 
 const TextInput = ({
@@ -27,6 +28,7 @@ const TextInput = ({
   isRequired,
   range,
   id,
+  register,
 }: props) => {
   const [focus, setFocus] = useState<boolean>(false);
 
@@ -40,9 +42,7 @@ const TextInput = ({
           id={id}
           placeholder={placeholder}
           type={type}
-          required={isRequired}
-          minLength={range && range.start}
-          maxLength={range && range.end}
+          {...register(id)}
         />
       </TextInputWrapper>
     </>

@@ -10,7 +10,7 @@ export const TextInputWrapper = styled.div<props>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   border: ${(props) =>
     props.focus ? "1px solid #CD8B65" : "1px solid #DFDFDF"};
 `;
