@@ -18,10 +18,10 @@ function App() {
         <Route path="/" exact>
           <LandingPage />
         </Route>
-        <Route path="/form" exact>
+        <Route path="/formular" exact>
           <FormPage />
         </Route>
-        <Route path="/final" exact>
+        <Route path="/odoslanie" exact>
           <FinalPage />
         </Route>
         <Redirect to="/" />

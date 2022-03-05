@@ -17,16 +17,8 @@ type flag = {
 };
 
 const PhoneContainer = ({ label, id, register }: props) => {
-  // const [activeFlag, setActiveFlag] = useState<flag>({
-  //   src: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg",
-  //   prefix: "+421",
-  //   alt: "sk",
-  // });
   const dispatch = useDispatch();
   const activeFlag: flag = useSelector((state: any) => state.activeFlag);
-
-  const [togleFlag, setTogleFlag] = useState<boolean>(true);
-
   const flags = [
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg",
@@ -39,18 +31,18 @@ const PhoneContainer = ({ label, id, register }: props) => {
       alt: "cz",
     },
   ];
+  const [togleFlag, setTogleFlag] = useState<boolean>(activeFlag.alt === flags[0].alt);
+
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value = e.target.value
       .replace(/[^\dA-Z]/g, "")
       .replace(/(.{3})/g, "$1 ")
       .trim();
-    console.log(typeof e.target.value);
   };
 
   const toggling = () => {
-    console.log("open");
-    // setActiveFlag(flags[+togleFlag]);
     dispatch(setActiveFlag(flags[+togleFlag]));
     setTogleFlag(!togleFlag);
   };
