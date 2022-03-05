@@ -1,39 +1,52 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import PageImage from "../../components/PageImage/PageImage";
 import PageContent from "../../components/PageContent/PageContent";
 import Container from "../../components/Container/Container";
+import StyledContainerBtn from "../../components/Buttons/ButtonsContainer";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
 import DropDownInput from "../../components/Form/DropDownInput/DropDownInput";
-import OptionalButton from '../../components/Buttons/Optional/OptionalButton'
-
+import OptionalButton from "../../components/Buttons/Optional/OptionalButton";
+import OptionalButtonsContainer from "../../components/Buttons/Optional/OptionalButtonsContainer";
+import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
+import { StringLocale } from "yup/lib/locale";
+import ParagraphWrapper from "../../components/PageUI/ParagraphWrapper";
+import { changeShelter, switchMoneyButtons, switchActionButtons } from "../../store/actions";
 
 type shelter = {
   id: number;
   name: string;
 };
 
-const LandingPage = () => {
-  /**
-   * header
-   * informacia o aktualnej page
-   * prepínač medzi druhom prispevku => animovany posuvnik
-   * input o projekte - aky utulok
-   * suma ktoru cheme prispiet - 6 tlacidla jeden input cisla
-   * (pri dlhsom cisle ako je trebas 3 -> skoc do noveho riadku nech je vidno cele) *
-   * button components -> primarne secundarne -> rozdiel iba vo farbe, potrebujem 2?
-   * footer bude mimo switch, je tam stale
-   * header nie je sucastou landing page musi byt stale v componente page
-   * flex -> na lavo spomenute vyssie, na pravo obrazok
-   * riesenie responzivnosti? -> obrazok je uzky, varianta bez obrazku pri malom rozliseni ?
-   *          -> skor nechat obrazok stale
-   * */
+type button = {
+  value: number;
+  isActive: boolean;
+};
 
+type action = {
+  paragraph: string;
+  isActive: boolean;
+  src: string;
+  type: string;
+  id: number;
+};
+
+const LandingPage = () => {
+  let actionButtons: action[] = useSelector(
+    (state: any) => state.actionButtons
+  );
+  const moneyButtons: button[] = useSelector(
+    (state: any) => state.moneyButtons
+  );
+
+  const dispatch = useDispatch();
   const [sheltersList, setSheltersList] = useState<shelter[] | null>(null);
 
   useEffect(() => {
@@ -48,12 +61,18 @@ const LandingPage = () => {
       });
   }, []);
 
-  const moneyButtons: number[] = [5, 10, 20, 30, 50, 100];
+  const handleActionsButtonClick = (id: number) => {
+    dispatch(switchActionButtons(id));
+  };
 
-  const [activeButton, setActiveButton] = useState<number>(0);
-  useEffect(() => {
-    console.log(activeButton);
-  }, [activeButton])
+  const handleMoneyButtonClick = (value: number) => {
+    dispatch(switchMoneyButtons(value));
+  };
+
+  const handleShelterChange = (shelter: string) => {
+    dispatch(changeShelter(shelter))
+    console.log(shelter);
+  }
 
   return (
     <>
@@ -62,21 +81,49 @@ const LandingPage = () => {
         <PageContent>
           <PageIndicator activePage={[true, false, false]} />
           <PageTitle title="Vyberte si možnosť, ako chcete pomôcť" />
-          <OptionalButton />
+          <ButtonsContainer>
+            {actionButtons.map((button: action) => (
+              <OptionalButton
+                context={button.paragraph}
+                handleButtonClick={() => handleActionsButtonClick(button.id)}
+                icon={button.src}
+                type={button.type}
+                key={button.id}
+                isActive={button.isActive}
+              ></OptionalButton>
+            ))}
+          </ButtonsContainer>
+          <ParagraphWrapper>
+            <PageParagraph titleParagraph="O projekte"></PageParagraph>
+            <PageParagraph
+              infoParagraph={
+                !actionButtons[0].isActive ? "Nepovinné" : "Povinné"
+              }
+            ></PageParagraph>
+          </ParagraphWrapper>
           <DropDownInput
+            onChange={handleShelterChange}
             id="dorp-down-id"
             label="Útulok"
             placeholder="Vyberte útulok zo zoznamu"
             data={sheltersList}
           />
+          <PageParagraph titleParagraph="Suma, ktorou chem prispieť"></PageParagraph>
           <ButtonsContainer>
-            {moneyButtons.map((value: number): any => (
-              <TernaryButton context={value} key={value} setActiveButton={setActiveButton} />
+            {moneyButtons.map((button: button): any => (
+              <TernaryButton
+                context={button.value}
+                key={button.value}
+                handleButtonClick={() => handleMoneyButtonClick(button.value)}
+                isActive={button.isActive}
+              />
             ))}
-            <TernaryButton setActiveButton={setActiveButton} type="number" />
+            {/* <TernaryButton setActiveButton={setActiveButton} type="number" /> */}
           </ButtonsContainer>
           <ButtonsContainer>
-            <PrimaryButton context="Pokračovať" />
+            <Link to="/form">
+              <PrimaryButton context="Pokračovať" />
+            </Link>
           </ButtonsContainer>
         </PageContent>
         <PageImage />
