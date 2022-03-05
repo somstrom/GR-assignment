@@ -17,7 +17,12 @@ export const fillUpFormData = (data: formData) => {
   return { type: "FILL_UP_FORM_DATA", playload: data };
 };
 
-export const changeShelter = (data: string) => {
+type shelter = {
+  id: number;
+  name: string;
+};
+
+export const changeShelter = (data: shelter) => {
   return { type: "CHANGE_SHELTER", playload: data };
 };
 
@@ -30,3 +35,11 @@ type flag = {
 export const setActiveFlag = (data: flag) => {
   return { type: "CHANGE_FLAG", playload: data };
 };
+
+export const SET_ACCESSIBLE_PAGES = (data: boolean[]) => {
+  return { type: "SET_ACCESSIBLE_PAGES", playload: data };
+};
+
+export const RESET_ACTION = {
+  type: "RESET"
+}
