@@ -9,9 +9,10 @@ import Form from "../../components/Form/Form";
 import Container from "../../components/Container/Container";
 import TextInput from "../../components/Form/TextInput/TextInput";
 import PhoneNumberInput from "../../components/Form/PhoneNumberInput/PhoneNumberInput";
-import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
+import StyledContainerBtn from "../../components/Buttons/ButtonsContainer";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton";
+import FormContainer from "../Form/FormContainer";
 
 const FormPage = () => {
 
@@ -22,35 +23,7 @@ const FormPage = () => {
         <PageContent>
           <PageIndicator activePage={[false, true, false]} />
           <PageTitle title={"Potrebujeme od Vás zopár informácií"} />
-          <Form title={"O vás"}>
-            <TextInput
-              id={"name-input"}
-              label={"Meno"}
-              placeholder={"Zadajte Vaše meno"}
-              type={"text"}
-              range={{ start: 2, end: 20 }}
-            />
-            <TextInput
-              id="surename-input"
-              label="Priezvisko"
-              placeholder="Zadajte Vaše priezvisko"
-              type="text"
-              range={{ start: 2, end: 30 }}
-              isRequired={true}
-            />
-            <TextInput
-              id={"email-input"}
-              label={"E-mailová adresa"}
-              placeholder={"Zadajte Váš e-mail"}
-              type={"text"}
-              range={{ start: 2, end: 30 }}
-            />
-            <PhoneNumberInput label={"Telefónne číslo"} id={"phone-id"} />
-            <ButtonsContainer>
-              <SecondaryButton context="Späť" />
-              <PrimaryButton context="Pokračovať" />
-            </ButtonsContainer>
-          </Form>
+          <FormContainer />
         </PageContent>
         <PageImage />
       </Container>
