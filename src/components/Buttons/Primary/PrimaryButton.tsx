@@ -6,11 +6,12 @@ type props = {
   context: string;
   type?: string | undefined;
   disabled?: boolean;
+  onClick?: () => void 
 };
 
-const PrimaryButton = ({ context, type, disabled }: props) => {
+const PrimaryButton = ({ context, type, disabled, onClick }: props) => {
   return (
-    <ButtonPrimary disabled={disabled}>
+    <ButtonPrimary disabled={disabled} onClick={onClick}>
       {context}
     </ButtonPrimary>
   );
