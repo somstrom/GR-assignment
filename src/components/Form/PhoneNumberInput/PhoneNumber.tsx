@@ -48,14 +48,14 @@ const PhoneNumber = ({
             {activeFlag.prefix}
           </StyledFlagWrapper>
           <StyledPhoneNumberInput
-            
             maxLength={11}
             id={id}
             {...register(id)}
+            onChange={handleChange}
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
-            onChange={handleChange}
           />
+
         </StyledPhoneWrapper>
       </TextInputWrapper>
     </>
