@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './PageImage.css'
+import { StyledPageImage } from './StyledPageImage'
 
 const PageImage = () => {
   return (
-    <img className="page-picture" src={'./page-image.png'} alt="pejsek"/>
+    <StyledPageImage src="./page-image.png" alt="pejsek"></StyledPageImage>
   )
 }
 

@@ -1,6 +1,5 @@
 import React, { Children } from "react";
 
-import "./ButtonsContainer.css";
 import { StyledContainerBtn } from "./StyledButtonsContainer";
 
 type props = {

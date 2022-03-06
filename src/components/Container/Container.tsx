@@ -1,6 +1,6 @@
 import React from "react";
 
-import './Container.css'
+import { StyledContainer } from "./StyledContainer";
 
 type props = {
   children: React.ReactNode;
@@ -8,9 +8,8 @@ type props = {
 
 const Container = ({ children }: props) => {
   return (
-      <div className="container">
-          {children}
-      </div>
+      <StyledContainer>{children}</StyledContainer>
+      // <div className="container">{children}</div>
   );
 };
 

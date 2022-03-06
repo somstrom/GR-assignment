@@ -6,8 +6,6 @@ import {
   StyledTextLabel,
 } from "./StyledTextInput";
 
-// import "./TextInput.css";
-
 type props = {
   placeholder: string;
   label: string;

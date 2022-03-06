@@ -1,6 +1,6 @@
 import React from "react";
 
-import './PageIndicator.css'
+import { PageIndicatorWrapper, PageSpan } from "./StyledPageIndicator";
 
 type prosp = {
   activePage: boolean[];
@@ -8,15 +8,13 @@ type prosp = {
 
 const PageIndicator = ({ activePage }: prosp) => {
   return (
-    <div className="page-indicator__wrapper">
-      {activePage.map((activePageIndicator: boolean, idx: number) =>
-        activePageIndicator ? (
-          <span className="page-span__active" key={idx}></span>
-        ) : (
-          <span className="page-span" key={idx}></span>
-        )
-      )}
-    </div>
+    <PageIndicatorWrapper>
+      {activePage.map((activePageIndicator: boolean, idx: number) => (
+        <PageSpan key={idx}
+          activePageIndicator={activePageIndicator}
+        ></PageSpan>
+      ))}
+    </PageIndicatorWrapper>
   );
 };
 

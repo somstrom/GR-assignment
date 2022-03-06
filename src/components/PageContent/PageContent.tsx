@@ -1,13 +1,13 @@
 import React from "react";
 
-import './PageContent.css'
+import { StyledPageContent } from "./StyledPageContent";
 
 type props = {
   children: React.ReactNode;
 };
 
 const PageContent = ({ children }: props) => {
-  return <div className="page-content">{children}</div>;
+  return <StyledPageContent>{children}</StyledPageContent>;
 };
 
 export default PageContent;

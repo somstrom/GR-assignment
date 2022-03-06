@@ -1,9 +1,0 @@
-.buttons-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 4rem 0;
-}
-
-.buttons-single {
-    justify-content: end;
-}

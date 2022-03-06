@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-import '../TextInput/TextInput.css'
-
 import {
   DropDownContainer,
   DropDownLabel,
