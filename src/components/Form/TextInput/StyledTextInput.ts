@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 type props = {
   focus: boolean;
-};
+  dropdown?: boolean;  
+}
+;
 
 export const TextInputWrapper = styled.div<props>`
   width: 100%;
+  margin-bottom: ${props => props.dropdown ? '-1px;' : '0;'}
   border-radius: 8px;
   display: flex;
   flex-direction: column;

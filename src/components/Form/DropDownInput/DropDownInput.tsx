@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from 'axios';
 
+import { TextInputWrapper } from "../TextInput/StyledTextInput";
 import {
   DropDownContainer,
   DropDownLabel,
@@ -11,9 +11,9 @@ import {
 } from "./StyledDropDown";
 
 type shelter = {
-  id: number,
-  name: string
-}
+  id: number;
+  name: string;
+};
 
 type props = {
   placeholder: string;
@@ -21,9 +21,9 @@ type props = {
   type?: string;
   isRequired?: boolean;
   id: string;
-  data: shelter[] | null,
+  data: shelter[] | null;
   onChange: any;
-  defaultValue: string
+  defaultValue: string;
 };
 
 const DropDownInput = ({
@@ -34,7 +34,7 @@ const DropDownInput = ({
   id,
   data,
   onChange,
-  defaultValue
+  defaultValue,
 }: props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -49,27 +49,34 @@ const DropDownInput = ({
 
   return (
     <>
-      <div
+      <TextInputWrapper focus={isOpen} onClick={toggling} dropdown={true}>
+        {/* <div
         className={`full-input ${isOpen ? "focused" : "not-focused"}`}
         style={{ marginBottom: "-1px" }}
         onClick={toggling}
         tabIndex={100}
-      >
+      > */}
         <DropDownContainer>
           <DropDownLabel>Útulok</DropDownLabel>
           <DropDownPlaceholder>
-            {defaultValue !== 'empty' ? defaultValue : selectedOption || "Vyberte útulok zo zoznamu"}
+            {defaultValue !== "empty"
+              ? defaultValue
+              : selectedOption || "Vyberte útulok zo zoznamu"}
           </DropDownPlaceholder>
         </DropDownContainer>
-      </div>
+      </TextInputWrapper>
       {isOpen && (
         <DropDownListContainer>
           <DropDownList>
-            {data && data.map((shelter: shelter) => (
-              <ListItem onClick={onOptionClicked(shelter.name)} key={shelter.id}>
-                {shelter.name}
-              </ListItem>
-            ))}
+            {data &&
+              data.map((shelter: shelter) => (
+                <ListItem
+                  onClick={onOptionClicked(shelter.name)}
+                  key={shelter.id}
+                >
+                  {shelter.name}
+                </ListItem>
+              ))}
           </DropDownList>
         </DropDownListContainer>
       )}
