@@ -23,6 +23,7 @@ export const DropDownLabel = styled(DropDownPlaceholder)`
 
 export const DropDownListContainer = styled("div")`
   overflow: hidden;
+  margin-top: -1.6rem;
 `;
 
 export const DropDownList = styled("ul")`

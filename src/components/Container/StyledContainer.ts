@@ -10,5 +10,6 @@ export const StyledContainer = styled.div`
   z-index: 1;
   @media (max-width: 900px) {
     width: 80%;
+    margin: 3rem auto 4rem auto; 
   }
 `;
