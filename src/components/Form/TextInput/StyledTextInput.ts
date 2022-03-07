@@ -2,20 +2,23 @@ import styled from "styled-components";
 
 type props = {
   focus: boolean;
-  dropdown?: boolean;  
-}
-;
+  dropdown?: boolean;
+};
 
 export const TextInputWrapper = styled.div<props>`
   width: 100%;
-  margin-bottom: ${props => props.dropdown ? '-1px;' : '0;'}
+  margin-bottom: ${(props) => (props.dropdown ? "-1px;" : "0;")}
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #DFDFDF;
   border: ${(props) =>
     props.focus ? "1px solid #CD8B65" : "1px solid #DFDFDF"};
+    &:focus-within {
+      border: 1px solid #CD8B65;
+    }
 `;
 
 export const StyledTextInput = styled.input`

@@ -1,5 +1,5 @@
 .check-box__wrapper {
-  margin: 2.8rem 0 2.8rem 0;
+  margin: 3rem 0 0rem 0;
 }
 
 .check-box__wrapper label {
@@ -10,6 +10,7 @@
 }
 
 .check-box__wrapper input {
+  margin-left: 0;
   appearance: none;
   height: 2rem;
   width: 2rem;
