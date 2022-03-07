@@ -1,13 +1,11 @@
-import React from "react";
-
-import './PageTitle.css'
+import { StyledPageTitle } from "./StyledPageTitle";
 
 type props = {
   title: string;
 };
 
 const PageTitle = ({ title }: props) => {
-  return <h1 className="page-title">{title}</h1>
+  return <StyledPageTitle>{title}</StyledPageTitle>
 };
 
 export default PageTitle;

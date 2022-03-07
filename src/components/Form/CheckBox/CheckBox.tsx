@@ -1,6 +1,4 @@
-import React from "react";
-
-import './CheckBox.css'
+import { StyledCheckBoxInput, StyledCheckBoxLabel, StyledCheckBoxWrapper } from "./StyledCheckBox";
 
 type props = {
   label: string,
@@ -11,10 +9,10 @@ type props = {
 
 const CheckBox = ({ label, id, isRequired, handleCheck }: props) => {
   return (
-    <div className="check-box__wrapper">
-      <input required={isRequired} id={id} type="checkbox" onChange={handleCheck}></input>
-      <label htmlFor={id}>{label}</label>
-    </div>
+    <StyledCheckBoxWrapper>
+      <StyledCheckBoxInput required={isRequired} id={id} type="checkbox" onChange={handleCheck}/>
+      <StyledCheckBoxLabel htmlFor={id}>{label}</StyledCheckBoxLabel>
+    </StyledCheckBoxWrapper>
   );
 };
 

@@ -1,6 +1,8 @@
-import React from "react";
-
-import './PageParagraph.css'
+import {
+  StyledParagraphInfo,
+  StyledParagraphTitle,
+  StyledParagraphWrapper,
+} from "./StyledPageParagraph";
 
 type props = {
   titleParagraph?: string;
@@ -9,10 +11,14 @@ type props = {
 
 const PageParagraph = ({ titleParagraph, infoParagraph }: props) => {
   return (
-    <div className="paragraph-wrapper">
-      {titleParagraph && <p className="paragraph-title">{titleParagraph}</p>}
-      {infoParagraph && <p className="paragraph-info">{infoParagraph}</p>}
-    </div>
+    <StyledParagraphWrapper>
+      {titleParagraph && (
+        <StyledParagraphTitle>{titleParagraph}</StyledParagraphTitle>
+      )}
+      {infoParagraph && (
+        <StyledParagraphInfo>{infoParagraph}</StyledParagraphInfo>
+      )}
+    </StyledParagraphWrapper>
   );
 };
 
