@@ -1,30 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
   NumberButton,
   ButtonTernary,
   TernaryButtonInput,
+  ButtonTernaryLabel,
 } from "./StyledTernaryButton";
 
 type props = {
   context?: number;
-  type?: string;
-  handleButtonClick: () => void;
+  buttonType?: string;
+  handleButtonClick?: () => void;
   isActive: boolean;
+  handleValue?: React.Dispatch<React.SetStateAction<number>>;
+  handleChange?: any;
+  inputLength?: number;
 };
 
-const TernaryButton = ({ context, type, handleButtonClick, isActive }: props) => {
-  if (type === "number") {
+const TernaryButton = ({
+  context,
+  buttonType,
+  handleButtonClick,
+  isActive,
+  handleValue,
+  handleChange,
+  inputLength
+}: props) => {
+  
+
+  if (buttonType === "number") {
     return (
-      <NumberButton isActive={isActive}>
-        <TernaryButtonInput 
-          type="number"
+      <NumberButton isActive={isActive} buttonType={buttonType}>
+        <TernaryButtonInput autoComplete="off"
+          length={inputLength}
+          onChange={handleChange}
+          onClick={handleButtonClick}
           id="numeric-input-id"
+          defaultValue={context !== -1 ? context : ''}
           inputMode="numeric"
-          pattern="[0-9]*"
-          min="0"
+          maxLength={10}
+          isActive={isActive}
         ></TernaryButtonInput>
-        <label htmlFor="number-onput-id">€</label>
+        <ButtonTernaryLabel htmlFor="numeric-input-id">€</ButtonTernaryLabel>
       </NumberButton>
     );
   }
