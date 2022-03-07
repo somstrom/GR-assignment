@@ -1,54 +1,35 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
-import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import PageImage from "../../components/PageImage/PageImage";
 import PageContent from "../../components/PageContent/PageContent";
 import Container from "../../components/Container/Container";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
-import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
 import DropDownInput from "../../components/Form/DropDownInput/DropDownInput";
 import OptionalButton from "../../components/Buttons/Optional/OptionalButton";
 import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
 import ParagraphWrapper from "../../components/PageUI/ParagraphWrapper";
 import {
-  changeShelter,
-  switchMoneyButtons,
-  switchActionButtons,
   SET_ACCESSIBLE_PAGES,
-  RESET_ACTION,
-  DEACTIVATE_BUTTONS_ACTION,
   DEACTIVATE_NUMBER_BUTTON,
   ACTIVATE_NUMBER_BUTTON,
   SET_NUMBER_VALUE,
+  SET_SLIDE_ACTION_TYPE,
+  SET_PREVIOUS_PAGE,
+  SWITCH_ACTION_BUTTON,
+  DEACTIVATE_BUTTONS,
+  SWITCH_MONEY_BUTTON,
+  CHANGE_SHELTER,
 } from "../../store/actions";
 import TernaryButtonContainer from "../Buttons/TernaryButtonContainer";
-
-type shelter = {
-  id: number;
-  name: string;
-};
-
-type button = {
-  value: number;
-  isActive: boolean;
-  type: string;
-};
-
-type action = {
-  paragraph: string;
-  isActive: boolean;
-  src: string;
-  type: string;
-  id: number;
-};
+import { shelter, button, action } from "../../types.interface";
 
 const LandingPage = () => {
-  let actionButtons: action[] = useSelector(
+  const dispatch = useDispatch();
+  const actionButtons: action[] = useSelector(
     (state: any) => state.actionButtons
   );
   const moneyButtons: button[] = useSelector(
@@ -58,7 +39,6 @@ const LandingPage = () => {
     (state: any) => state.chosenShelter
   );
 
-  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<number>(0);
   const [sheltersList, setSheltersList] = useState<shelter[]>([
     { name: "empty", id: -1 },
@@ -81,28 +61,30 @@ const LandingPage = () => {
   }, [inputValue]);
 
   const handleClick = () => {
-    dispatch(SET_ACCESSIBLE_PAGES([true, true, false]));
+    dispatch(SET_PREVIOUS_PAGE(0));
+    dispatch(SET_ACCESSIBLE_PAGES(1));
+    dispatch(SET_SLIDE_ACTION_TYPE("left"));
     dispatch(SET_NUMBER_VALUE(inputValue));
   };
 
   const handleActionsButtonClick = (id: number) => {
-    dispatch(switchActionButtons(id));
+    dispatch(SWITCH_ACTION_BUTTON(id));
   };
 
   const handleMoneyButtonClick = (value: number, type: string) => {
     if (type === "number") {
-      dispatch(DEACTIVATE_BUTTONS_ACTION(value));
+      dispatch(DEACTIVATE_BUTTONS(value));
       dispatch(ACTIVATE_NUMBER_BUTTON(value));
     } else {
       dispatch(DEACTIVATE_NUMBER_BUTTON(value));
-      dispatch(switchMoneyButtons(value));
+      dispatch(SWITCH_MONEY_BUTTON(value));
     }
   };
 
   const handleShelterChange = (shelter: string) => {
     const finalShelter =
       sheltersList.find((s: shelter) => s.name === shelter) || sheltersList[0];
-    dispatch(changeShelter(finalShelter));
+    dispatch(CHANGE_SHELTER(finalShelter));
   };
 
   return (
@@ -110,7 +92,6 @@ const LandingPage = () => {
       <div style={{ height: "40px", width: "100%" }}></div>
       <Container>
         <PageContent>
-          <PageIndicator activePage={[true, false, false]} />
           <PageTitle title="Vyberte si možnosť, ako chcete pomôcť" />
           <ButtonsContainer>
             {actionButtons.map((button: action) => (
@@ -136,7 +117,6 @@ const LandingPage = () => {
             defaultValue={chosenShelter.name}
             onChange={handleShelterChange}
             id="dorp-down-id"
-            label="Útulok"
             placeholder="Vyberte útulok zo zoznamu"
             data={sheltersList}
           />
@@ -156,20 +136,15 @@ const LandingPage = () => {
             ))}
           </ButtonsContainer>
           <ButtonsContainer type="nav-buttons">
-            <Link to="/formular">
-              <PrimaryButton
-                onClick={handleClick}
-                context="Pokračovať"
-                disabled={
-                  (actionButtons[0].isActive &&
-                    chosenShelter.name === "empty") ||
-                  (moneyButtons[6].isActive &&
-                    (inputValue === 0 ||
-                      isNaN(inputValue) ||
-                      inputValue === -1))
-                }
-              />
-            </Link>
+            <PrimaryButton
+              onClick={handleClick}
+              context="Pokračovať"
+              disabled={
+                (actionButtons[0].isActive && chosenShelter.name === "empty") ||
+                (moneyButtons[6].isActive &&
+                  (inputValue === 0 || isNaN(inputValue) || inputValue === -1))
+              }
+            />
           </ButtonsContainer>
         </PageContent>
         <PageImage />

@@ -19,7 +19,6 @@ const TernaryButtonContainer = ({
 }: props) => {
   const [inputLength, setInputLength] = useState<number>(0);
   useEffect(() => {
-    console.log(context);
     setInputLength(context.toString().length);
     handleValue && handleValue(context);
   }, []);

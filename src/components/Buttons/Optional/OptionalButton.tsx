@@ -1,4 +1,3 @@
-import React from "react";
 import {
   OptionalButtonIcon,
   OptionalButtonTag,
@@ -27,14 +26,14 @@ const OptionalButton = ({
       {type === "left" ? (
         <OptionalButtonLeft onClick={handleButtonClick} isActive={isActive}>
           <IconWrapper>
-            <OptionalButtonIcon src={icon} />
+            <OptionalButtonIcon icon={icon} isActive={isActive} />
           </IconWrapper>
           <OptionalButtonTag>{context}</OptionalButtonTag>
         </OptionalButtonLeft>
       ) : (
         <OptionalButtonRight onClick={handleButtonClick} isActive={isActive}>
           <IconWrapper>
-            <OptionalButtonIcon src={icon} />
+            <OptionalButtonIcon icon={icon} isActive={isActive} />
           </IconWrapper>
           <OptionalButtonTag>{context}</OptionalButtonTag>
         </OptionalButtonRight>

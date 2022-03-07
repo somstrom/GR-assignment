@@ -1,24 +1,28 @@
 import styled from "styled-components";
 
 type props = {
-  isActive: boolean;
+  isActive?: boolean;
+  icon?: string;
 };
 
-export const OptionalButtonIcon = styled("img")`
-  widht: 50%;
-  height: 50%;
+export const OptionalButtonIcon = styled.div<props>`
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => (props.isActive ? "white;" : "#9f9f9f;")}
+  -webkit-mask: url(${(props) => props.icon}) no-repeat center;
+  mask: url(${(props) => props.icon}) no-repeat center;
   z-index: 5;
 `;
 
-export const OptionalButtonTag = styled("p")`
+export const OptionalButtonTag = styled.p`
   text-align: start;
   font-weight: 600;
   line-height: 21px;
 `;
 
-export const OptionalButtonWrapper = styled("div")`
+export const OptionalButtonWrapper = styled.div`
   width: 100%;
-  height: 11.5rem;
+  height: 11.5rem;  
   margin-bottom: 2rem;
   display: flex;
   item-align: start;
@@ -26,7 +30,7 @@ export const OptionalButtonWrapper = styled("div")`
   border-radius: 2rem;
 `;
 
-export const IconWrapper = styled("div")`
+export const IconWrapper = styled.div`
   background-color: rgb(47, 47, 47, 0.16);
   border-radius: 50%;
   width: 80px;
@@ -45,7 +49,7 @@ cursor: pointer;
   justify-content: space-between;
   align-items: start;
   padding: 1.5rem;
-  border: ${(props) => props.isActive ? 'none;' : '1px solid #CD8B65;'}
+  border: ${(props) => (props.isActive ? "none;" : "1px solid #CD8B65;")}
   color: ${(props) => (props.isActive ? "white;" : "#585757;")}
   background:  ${(props) =>
     props.isActive

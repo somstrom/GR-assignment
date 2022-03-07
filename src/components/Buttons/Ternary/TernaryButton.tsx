@@ -1,5 +1,3 @@
-import React, {useState} from "react";
-
 import {
   NumberButton,
   ButtonTernary,
@@ -7,12 +5,12 @@ import {
   ButtonTernaryLabel,
 } from "./StyledTernaryButton";
 
+
 type props = {
   context?: number;
   buttonType?: string;
   handleButtonClick?: () => void;
   isActive: boolean;
-  handleValue?: React.Dispatch<React.SetStateAction<number>>;
   handleChange?: any;
   inputLength?: number;
 };
@@ -22,12 +20,9 @@ const TernaryButton = ({
   buttonType,
   handleButtonClick,
   isActive,
-  handleValue,
   handleChange,
   inputLength
 }: props) => {
-  
-
   if (buttonType === "number") {
     return (
       <NumberButton isActive={isActive} buttonType={buttonType}>

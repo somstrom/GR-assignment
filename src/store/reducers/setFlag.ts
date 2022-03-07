@@ -1,8 +1,5 @@
-type flag = {
-  src: string;
-  prefix: string;
-  alt: string;
-};
+import { flag } from "../../types.interface";
+
 
 type Action = { type: string; playload: flag };
 

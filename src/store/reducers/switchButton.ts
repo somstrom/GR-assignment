@@ -1,10 +1,4 @@
-import { ButtonPrimary } from "../../components/Buttons/Primary/StyledPrimaryButton";
-
-type button = {
-  value: number;
-  isActive: boolean;
-  type?: string;
-};
+import { button } from "../../types.interface";
 
 const initialState: button[] = [
   { value: 5, isActive: true, type: "btn" },
@@ -19,7 +13,6 @@ const initialState: button[] = [
 type Action = { type: string; playload: number };
 
 export const switchButton = (state = initialState, action: Action) => {
-  console.log(action.type);
   switch (action.type) {
     case "SWITCH_MONEY_BUTTON":
       const newState = state.map((button: button) =>

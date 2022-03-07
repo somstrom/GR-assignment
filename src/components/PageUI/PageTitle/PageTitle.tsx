@@ -5,7 +5,7 @@ type props = {
 };
 
 const PageTitle = ({ title }: props) => {
-  return <StyledPageTitle>{title}</StyledPageTitle>
+  return <StyledPageTitle>{title}</StyledPageTitle>;
 };
 
 export default PageTitle;

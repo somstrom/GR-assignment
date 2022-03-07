@@ -1,10 +1,5 @@
-type actionButton = {
-  paragraph: string;
-  isActive: boolean;
-  src: string;
-  type: string;
-  id: number;
-};
+import { actionButton } from "../../types.interface";
+
 
 const initialState: actionButton[] = [
   {

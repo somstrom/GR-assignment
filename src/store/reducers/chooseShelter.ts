@@ -1,21 +1,21 @@
-type shelter = {
-    id: number;
-    name: string;
-  };
+import { shelter } from "../../types.interface";
 
-  type Action = { type: string; playload: shelter };
+type Action = { type: string; playload: shelter };
 
 const initialState = {
-    name: 'empty',
-    id: -1
-}
+  name: "empty",
+  id: -1,
+};
 
-export const chooseShelter = (state: shelter = initialState, action: Action) => {
-    switch (action.type) {
+export const chooseShelter = (
+  state: shelter = initialState,
+  action: Action
+) => {
+  switch (action.type) {
     case "CHANGE_SHELTER":
       return action.playload;
     case "RESET":
-        return initialState;
+      return initialState;
     default:
       return state;
   }

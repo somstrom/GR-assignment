@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { TextInputWrapper } from "../TextInput/StyledTextInput";
 import {
@@ -17,9 +17,6 @@ type shelter = {
 
 type props = {
   placeholder: string;
-  label: string;
-  type?: string;
-  isRequired?: boolean;
   id: string;
   data: shelter[] | null;
   onChange: any;
@@ -28,9 +25,6 @@ type props = {
 
 const DropDownInput = ({
   placeholder,
-  label,
-  type,
-  isRequired,
   id,
   data,
   onChange,
@@ -55,7 +49,7 @@ const DropDownInput = ({
           <DropDownPlaceholder>
             {defaultValue !== "empty"
               ? defaultValue
-              : selectedOption || "Vyberte útulok zo zoznamu"}
+              : selectedOption || placeholder}
           </DropDownPlaceholder>
         </DropDownContainer>
       </TextInputWrapper>

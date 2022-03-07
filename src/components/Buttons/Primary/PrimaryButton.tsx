@@ -1,15 +1,12 @@
-import React from "react";
-
 import { ButtonPrimary } from "./StyledPrimaryButton";
 
 type props = {
   context: string;
-  type?: string | undefined;
   disabled?: boolean;
-  onClick?: () => void 
+  onClick?: () => void;
 };
 
-const PrimaryButton = ({ context, type, disabled, onClick }: props) => {
+const PrimaryButton = ({ context, disabled, onClick }: props) => {
   return (
     <ButtonPrimary disabled={disabled} onClick={onClick}>
       {context}

@@ -25,7 +25,9 @@ export const ButtonTernary = styled("div")<props>`
     props.isActive
       ? "linear-gradient(115.41deg, #cd8a64 -1.77%, #c4794f 73.03%);"
       : "white;"}
-
+  &:hover {
+    border: 1px solid #CD8B65;
+  }
 `;
 
 export const NumberButton = styled(ButtonTernary)`

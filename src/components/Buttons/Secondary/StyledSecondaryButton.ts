@@ -10,4 +10,10 @@ export const ButtonSecondary = styled.button`
   line-height: 19px;
   cursor: pointer;
   color: #2f2f2f;
+  border 1px solid transparent;
+  &:hover{
+    background: white;
+    border: 1px solid #f3e2d9; 
+    color: #2f2f2f;
+  }
 `;

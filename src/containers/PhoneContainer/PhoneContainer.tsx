@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveFlag } from "../../store/actions";
 
 import PhoneNumber from "../../components/Form/PhoneNumberInput/PhoneNumber";
+import { flag } from "../../types.interface";
+import { CHANGE_FLAG } from "../../store/actions";
 
 type props = {
   label: string;
   id: string;
   register: any;
-};
-
-type flag = {
-  src: string;
-  prefix: string;
-  alt: string;
 };
 
 const PhoneContainer = ({ label, id, register }: props) => {
@@ -31,9 +26,9 @@ const PhoneContainer = ({ label, id, register }: props) => {
       alt: "cz",
     },
   ];
-  const [togleFlag, setTogleFlag] = useState<boolean>(activeFlag.alt === flags[0].alt);
-
-  
+  const [togleFlag, setTogleFlag] = useState<boolean>(
+    activeFlag.alt === flags[0].alt
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value = e.target.value
@@ -43,7 +38,7 @@ const PhoneContainer = ({ label, id, register }: props) => {
   };
 
   const toggling = () => {
-    dispatch(setActiveFlag(flags[+togleFlag]));
+    dispatch(CHANGE_FLAG(flags[+togleFlag]));
     setTogleFlag(!togleFlag);
   };
 

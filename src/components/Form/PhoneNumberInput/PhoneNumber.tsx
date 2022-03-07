@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Controller } from "react-hook-form";
+import React from "react";
 
 import {
   TextInputWrapper,
@@ -11,6 +10,7 @@ import {
   StyledPhoneWrapper,
   StyledFlag,
 } from "./StyledPhoneNumber";
+import { flag } from "../../../types.interface";
 
 type props = {
   activeFlag: flag;
@@ -22,12 +22,6 @@ type props = {
   flags: flag[];
 };
 
-type flag = {
-  src: string;
-  prefix: string;
-  alt: string;
-};
-
 const PhoneNumber = ({
   activeFlag,
   label,
@@ -35,12 +29,10 @@ const PhoneNumber = ({
   handleChange,
   register,
   toggling,
-  flags,
 }: props) => {
-  const [focus, setFocus] = useState<boolean>(false);
   return (
     <>
-      <TextInputWrapper focus={focus}>
+      <TextInputWrapper>
         <StyledTextLabel htmlFor={id}>{label}</StyledTextLabel>
         <StyledPhoneWrapper>
           <StyledFlagWrapper prefix={activeFlag.prefix}>

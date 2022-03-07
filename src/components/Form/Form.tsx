@@ -12,7 +12,7 @@ type props = {
 
 const Form = ({ children, title, onSubmit, onKeyPress }: props) => {
   return (
-    <FormWrapper onSubmit={onSubmit} onKeyPress={onKeyPress} >
+    <FormWrapper onSubmit={onSubmit} onKeyPress={onKeyPress}>
       <PageParagraph titleParagraph={title}></PageParagraph>
       {children}
     </FormWrapper>
