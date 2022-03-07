@@ -19,6 +19,9 @@ export const TextInputWrapper = styled.div<props>`
     &:focus-within {
       border: 1px solid #CD8B65;
     }
+  &:hover {
+    border: 1px solid #CD8B65;
+  }
 `;
 
 export const StyledTextInput = styled.input`

@@ -117,7 +117,6 @@ const LandingPage = () => {
             defaultValue={chosenShelter.name}
             onChange={handleShelterChange}
             id="dorp-down-id"
-            label="Útulok"
             placeholder="Vyberte útulok zo zoznamu"
             data={sheltersList}
           />

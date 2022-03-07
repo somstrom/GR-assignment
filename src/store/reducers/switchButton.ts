@@ -13,7 +13,6 @@ const initialState: button[] = [
 type Action = { type: string; playload: number };
 
 export const switchButton = (state = initialState, action: Action) => {
-  console.log(action.type);
   switch (action.type) {
     case "SWITCH_MONEY_BUTTON":
       const newState = state.map((button: button) =>

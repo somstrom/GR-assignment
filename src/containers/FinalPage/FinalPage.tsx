@@ -48,18 +48,6 @@ const FinalPage = () => {
   };
 
   const handlePost = () => {
-    console.log({
-      ...(formData.firstname
-        ? { firstName: formData.firstname }
-        : { firstName: " " }),
-      lastName: formData.lastname,
-      email: formData.email,
-      value: moneyValue,
-      ...(formData.phone && {
-        phone: activeFlag.prefix + formData.phone.split(" ").join(),
-      }),
-      ...(shelter.id !== -1 && { shelterID: shelter.id }),
-    });
     axios
       .post(
         "https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute",

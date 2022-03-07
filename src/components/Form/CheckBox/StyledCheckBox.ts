@@ -11,10 +11,16 @@ export const StyledCheckBoxInput = styled.input`
   width: 2rem;
   background: #fff;
   border: 1px solid #f3e2d9;
+  &:hover {
+    border: 1px solid #CD8B65;
+  }
   box-sizing: border-box;
   border-radius: 8px;
   cursor: pointer;
   vertical-align:middle;
+  &:checked {
+    border: 1px solid #CD8B65;
+  }
   &:checked:after {
     position: relative;
     top: -0.1rem;
