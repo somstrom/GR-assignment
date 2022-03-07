@@ -15,7 +15,7 @@ export const NumberLabel = styled.label`
 `
 
 export const ButtonTernary = styled("div")<props>`
-  padding: ${(props) => (props.buttonType === "number" ? "0;" : "1rem;")}
+  padding: ${(props) => (props.buttonType === "number" ? "0;" : "1.1rem 1rem 1rem 1rem;")}
   background: #ffffff;
   border: 1px solid #dfdfdf;
   box-sizing: border-box;
@@ -23,6 +23,8 @@ export const ButtonTernary = styled("div")<props>`
   font-style: normal;
   font-weight: 800;
   line-height: 21px;
+  vertical-align: middle;
+  text-align: center;
   color: ${(props) => (props.isActive ? "white;" : "#2f2f2f;")}
   max-width: ${(props) => (props.buttonType === "number" ? ";" : "80px;")};
   background: ${(props) =>
@@ -50,9 +52,7 @@ export const TernaryButtonInput = styled.input<props>`
   outline: none;
   font-style: normal;
   font-weight: 800;
-  // border-radius: 8px;
   line-height: 21px;
-  // border-bottom: solid 1px gray;
   margin: 1rem 0 1rem 1rem;
   background: transparent;
   &::-webkit-outer-spin-button,
