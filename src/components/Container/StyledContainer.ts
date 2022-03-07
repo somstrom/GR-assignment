@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 type props = {
   action: string;
 };
@@ -10,7 +9,11 @@ export const ContainerWrapper = styled.div`
   margin: 5.9rem auto 7.875rem auto;
   display: flex;
   flex-direction: column;
-  `;
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 3rem auto 4rem auto;
+  }
+`;
 
 export const StyledContainer = styled.div<props>`
   display: flex;
@@ -19,10 +22,7 @@ export const StyledContainer = styled.div<props>`
   gap: 1rem;
   justify-content: space-between;
   z-index: 1;
-  @media (max-width: 900px) {
-    width: 80%;
-    margin: 3rem auto 4rem auto;
-  }
+
   @keyframes slideInFromLeft {
     0% {
       transform: translateX(-100%);
