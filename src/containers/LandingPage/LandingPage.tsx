@@ -19,9 +19,14 @@ import {
   changeShelter,
   switchMoneyButtons,
   switchActionButtons,
-  SET_ACCESSIBLE_PAGES
+  SET_ACCESSIBLE_PAGES,
+  RESET_ACTION,
+  DEACTIVATE_BUTTONS_ACTION,
+  DEACTIVATE_NUMBER_BUTTON,
+  ACTIVATE_NUMBER_BUTTON,
+  SET_NUMBER_VALUE,
 } from "../../store/actions";
-
+import TernaryButtonContainer from "../Buttons/TernaryButtonContainer";
 
 type shelter = {
   id: number;
@@ -31,6 +36,7 @@ type shelter = {
 type button = {
   value: number;
   isActive: boolean;
+  type: string;
 };
 
 type action = {
@@ -53,6 +59,7 @@ const LandingPage = () => {
   );
 
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState<number>(0);
   const [sheltersList, setSheltersList] = useState<shelter[]>([
     { name: "empty", id: -1 },
   ]);
@@ -69,16 +76,27 @@ const LandingPage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    isNaN(inputValue) && setInputValue(-1);
+  }, [inputValue]);
+
   const handleClick = () => {
     dispatch(SET_ACCESSIBLE_PAGES([true, true, false]));
-  }
+    dispatch(SET_NUMBER_VALUE(inputValue));
+  };
 
   const handleActionsButtonClick = (id: number) => {
     dispatch(switchActionButtons(id));
   };
 
-  const handleMoneyButtonClick = (value: number) => {
-    dispatch(switchMoneyButtons(value));
+  const handleMoneyButtonClick = (value: number, type: string) => {
+    if (type === "number") {
+      dispatch(DEACTIVATE_BUTTONS_ACTION(value));
+      dispatch(ACTIVATE_NUMBER_BUTTON(value));
+    } else {
+      dispatch(DEACTIVATE_NUMBER_BUTTON(value));
+      dispatch(switchMoneyButtons(value));
+    }
   };
 
   const handleShelterChange = (shelter: string) => {
@@ -123,24 +141,32 @@ const LandingPage = () => {
             data={sheltersList}
           />
           <PageParagraph titleParagraph="Suma, ktorou chem prispieť"></PageParagraph>
-          <ButtonsContainer>
+          <ButtonsContainer type="money">
             {moneyButtons.map((button: button): any => (
-              <TernaryButton
+              <TernaryButtonContainer
+                buttonType={button.type}
                 context={button.value}
-                key={button.value}
-                handleButtonClick={() => handleMoneyButtonClick(button.value)}
+                key={button.type === "number" ? "number" : button.value}
+                handleValue={setInputValue}
+                handleButtonClick={() =>
+                  handleMoneyButtonClick(button.value, button.type)
+                }
                 isActive={button.isActive}
               />
             ))}
-            {/* <TernaryButton setActiveButton={setActiveButton} type="number" /> */}
           </ButtonsContainer>
-          <ButtonsContainer>
+          <ButtonsContainer type="nav-buttons">
             <Link to="/formular">
               <PrimaryButton
                 onClick={handleClick}
                 context="Pokračovať"
                 disabled={
-                  actionButtons[0].isActive && chosenShelter.name === "empty"
+                  (actionButtons[0].isActive &&
+                    chosenShelter.name === "empty") ||
+                  (moneyButtons[6].isActive &&
+                    (inputValue === 0 ||
+                      isNaN(inputValue) ||
+                      inputValue === -1))
                 }
               />
             </Link>
