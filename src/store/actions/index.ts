@@ -2,8 +2,28 @@ export const switchMoneyButtons = (value: number) => {
   return { type: "SWITCH_MONEY_BUTTON", playload: value };
 };
 
+export const switchNumberButtons = (value: number) => {
+  return { type: "SWITCH_NUMBER_BUTTON", playload: value };
+};
+
+export const ACTIVATE_NUMBER_BUTTON = (value: number) => {
+  return { type: "ACTIVATE_NUMBER_BUTTON", playload: value };
+};
+
+export const DEACTIVATE_NUMBER_BUTTON = (value: number) => {
+  return { type: "DEACTIVATE_NUMBER_BUTTON", playload: value };
+};
+
+export const SET_NUMBER_VALUE = (value: number) => {
+  return { type: "SET_NUMBER_VALUE", playload: value };
+};
+
 export const switchActionButtons = (value: number) => {
   return { type: "SWITCH_ACTION_BUTTON", playload: value };
+};
+
+export const DEACTIVATE_BUTTONS_ACTION = (value: number) => {
+  return { type: "DEACTIVATE_BUTTONS", playload: value };
 };
 
 type formData = {
@@ -41,5 +61,5 @@ export const SET_ACCESSIBLE_PAGES = (data: boolean[]) => {
 };
 
 export const RESET_ACTION = {
-  type: "RESET"
-}
+  type: "RESET",
+};
