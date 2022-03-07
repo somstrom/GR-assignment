@@ -1,20 +1,33 @@
 import * as yup from "yup";
 
 export const validationSchema = yup.object().shape({
+  phone: yup
+    .string()
+    .matches(/^$|^[+]?[()/0-9. -]{11}$/, "Nesprávny formát čísla"),
   firstname: yup
     .string()
-    .required()
-    .min(2, "Meno musí mať aspoň 2 znaky")
-    .max(20, "Meno môže obsahovať najviac 20 znakov")
-    .matches(/^[a-zA-Z]+$/, "Meno nemôže obsahovať čísla ani špeciálne znaky"),
+    .matches(
+      /^$|^[a-žA-Ž]+$/,
+      "Meno nemôže obsahovať špeciálne znaky ani čísla"
+    )
+    .matches(
+      /^$|[a-žA-Ž0-9]{2,20}$/,
+      "Meno nemôže byť kratšie ako 2 a dlhšie ako 20 znakov"
+    ),
+
   lastname: yup
     .string()
     .required("Priezvisko je povinné pole")
-    .min(3, "Priezvisko musí mať aspoň 2 znaky")
-    .max(30, "Priezvisko môže obsahovať najviac 30 znakov")
     .matches(
-      /^[a-zA-Z]+$/,
-      "Priezvisko nemôže obsahovať čísla ani špeciálne znaky"
+      /^$|^[a-žA-Ž]+$/,
+      "Priezvisko nemôže obsahovať špeciálne znaky ani čísla"
+    )
+    .matches(
+      /^$|[a-žA-Ž0-9]{3,30}$/,
+      "Priezvisko nemôže byť kratšie ako 2 a dlhšie ako 20 znakov"
     ),
-  email: yup.string().email("Zle zadaný email"),
+  email: yup
+    .string()
+    .required("E-mail je povinné pole")
+    .email("Nesprávny formát e-mailu"),
 });
