@@ -1,8 +1,8 @@
-export const switchMoneyButtons = (value: number) => {
+export const SWITCH_MONEY_BUTTON = (value: number) => {
   return { type: "SWITCH_MONEY_BUTTON", playload: value };
 };
 
-export const switchNumberButtons = (value: number) => {
+export const SWITCH_NUMBER_BUTTON = (value: number) => {
   return { type: "SWITCH_NUMBER_BUTTON", playload: value };
 };
 
@@ -18,11 +18,11 @@ export const SET_NUMBER_VALUE = (value: number) => {
   return { type: "SET_NUMBER_VALUE", playload: value };
 };
 
-export const switchActionButtons = (value: number) => {
+export const SWITCH_ACTION_BUTTON = (value: number) => {
   return { type: "SWITCH_ACTION_BUTTON", playload: value };
 };
 
-export const DEACTIVATE_BUTTONS_ACTION = (value: number) => {
+export const DEACTIVATE_BUTTONS = (value: number) => {
   return { type: "DEACTIVATE_BUTTONS", playload: value };
 };
 
@@ -33,7 +33,7 @@ type formData = {
   number?: number;
 };
 
-export const fillUpFormData = (data: formData) => {
+export const FILL_UP_FORMDATA = (data: formData) => {
   return { type: "FILL_UP_FORM_DATA", playload: data };
 };
 
@@ -42,7 +42,7 @@ type shelter = {
   name: string;
 };
 
-export const changeShelter = (data: shelter) => {
+export const CHANGE_SHELTER = (data: shelter) => {
   return { type: "CHANGE_SHELTER", playload: data };
 };
 
@@ -52,7 +52,7 @@ type flag = {
   alt: string;
 };
 
-export const setActiveFlag = (data: flag) => {
+export const CHANGE_FLAG = (data: flag) => {
   return { type: "CHANGE_FLAG", playload: data };
 };
 

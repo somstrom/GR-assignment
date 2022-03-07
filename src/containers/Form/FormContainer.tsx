@@ -11,12 +11,7 @@ import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton"
 import ErrorMessage from "../../components/Form/ErrorMessage/ErrorMessage";
 import PhoneContainer from "../PhoneContainer/PhoneContainer";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
-import {
-  fillUpFormData,
-  SET_ACCESSIBLE_PAGES,
-  SET_PREVIOUS_PAGE,
-  SET_SLIDE_ACTION_TYPE,
-} from "../../store/actions";
+import { FILL_UP_FORMDATA, SET_ACCESSIBLE_PAGES, SET_PREVIOUS_PAGE, SET_SLIDE_ACTION_TYPE } from "../../store/actions";
 
 
 type FormData = {
@@ -45,7 +40,7 @@ const FormContainer = () => {
   useEffect(() => {}, []);
 
   const onSubmit = handleSubmit((data) => {
-    dispatch(fillUpFormData(data));
+    dispatch(FILL_UP_FORMDATA(data));
     dispatch(SET_PREVIOUS_PAGE(1));
     dispatch(SET_SLIDE_ACTION_TYPE("left"));
     dispatch(SET_ACCESSIBLE_PAGES(2));

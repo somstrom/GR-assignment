@@ -9,7 +9,7 @@ type props = {
 
 const PrimaryButton = ({ context, disabled, onClick }: props) => {
   return (
-    <ButtonPrimary type="button" disabled={disabled} onClick={onClick}>
+    <ButtonPrimary disabled={disabled} onClick={onClick}>
       {context}
     </ButtonPrimary>
   );

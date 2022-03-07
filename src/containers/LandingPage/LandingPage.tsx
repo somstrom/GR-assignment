@@ -13,16 +13,16 @@ import OptionalButton from "../../components/Buttons/Optional/OptionalButton";
 import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
 import ParagraphWrapper from "../../components/PageUI/ParagraphWrapper";
 import {
-  changeShelter,
-  switchMoneyButtons,
-  switchActionButtons,
   SET_ACCESSIBLE_PAGES,
-  DEACTIVATE_BUTTONS_ACTION,
   DEACTIVATE_NUMBER_BUTTON,
   ACTIVATE_NUMBER_BUTTON,
   SET_NUMBER_VALUE,
   SET_SLIDE_ACTION_TYPE,
-  SET_PREVIOUS_PAGE
+  SET_PREVIOUS_PAGE,
+  SWITCH_ACTION_BUTTON,
+  DEACTIVATE_BUTTONS,
+  SWITCH_MONEY_BUTTON,
+  CHANGE_SHELTER
 } from "../../store/actions";
 import TernaryButtonContainer from "../Buttons/TernaryButtonContainer";
 
@@ -87,23 +87,23 @@ const LandingPage = () => {
   };
 
   const handleActionsButtonClick = (id: number) => {
-    dispatch(switchActionButtons(id));
+    dispatch(SWITCH_ACTION_BUTTON(id));
   };
 
   const handleMoneyButtonClick = (value: number, type: string) => {
     if (type === "number") {
-      dispatch(DEACTIVATE_BUTTONS_ACTION(value));
+      dispatch(DEACTIVATE_BUTTONS(value));
       dispatch(ACTIVATE_NUMBER_BUTTON(value));
     } else {
       dispatch(DEACTIVATE_NUMBER_BUTTON(value));
-      dispatch(switchMoneyButtons(value));
+      dispatch(SWITCH_MONEY_BUTTON(value));
     }
   };
 
   const handleShelterChange = (shelter: string) => {
     const finalShelter =
       sheltersList.find((s: shelter) => s.name === shelter) || sheltersList[0];
-    dispatch(changeShelter(finalShelter));
+    dispatch(CHANGE_SHELTER(finalShelter));
   };
 
   return (
