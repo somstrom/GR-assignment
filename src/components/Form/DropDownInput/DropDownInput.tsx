@@ -50,12 +50,6 @@ const DropDownInput = ({
   return (
     <>
       <TextInputWrapper focus={isOpen} onClick={toggling} dropdown={true}>
-        {/* <div
-        className={`full-input ${isOpen ? "focused" : "not-focused"}`}
-        style={{ marginBottom: "-1px" }}
-        onClick={toggling}
-        tabIndex={100}
-      > */}
         <DropDownContainer>
           <DropDownLabel>Útulok</DropDownLabel>
           <DropDownPlaceholder>
