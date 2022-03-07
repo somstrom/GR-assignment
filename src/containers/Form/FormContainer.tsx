@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useHistory } from "react-router-dom";
@@ -29,7 +29,6 @@ const FormContainer = () => {
   const accessiblePages: boolean[] = useSelector(
     (state: any) => state.accessiblePages
   );
-
   const dispatch = useDispatch();
 
   const {
@@ -38,6 +37,8 @@ const FormContainer = () => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: formPrefillData,
+    mode: "onBlur",
+    reValidateMode: "onChange",
     resolver: yupResolver(validationSchema),
   });
 
@@ -46,21 +47,26 @@ const FormContainer = () => {
   }, []);
 
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data));
     dispatch(fillUpFormData(data));
     dispatch(SET_ACCESSIBLE_PAGES([true, true, true]));
     history.push("/odoslanie");
   });
 
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <>
-      <Form title="O vás" onSubmit={onSubmit}>
+      <Form title="O vás" onSubmit={onSubmit} onKeyPress={handleEnterPress}>
         <TextInput
           id="firstname"
           label={"Meno"}
           placeholder={"Zadajte Vaše meno"}
           type={"text"}
-          range={{ start: 2, end: 20 }}
+          max={20}
           register={register}
         />
         {errors?.firstname && (
@@ -71,7 +77,7 @@ const FormContainer = () => {
           label="Priezvisko"
           placeholder="Zadajte Vaše priezvisko"
           type="text"
-          range={{ start: 2, end: 30 }}
+          max={30}
           isRequired={true}
           register={register}
         />
@@ -83,7 +89,6 @@ const FormContainer = () => {
           label={"E-mailová adresa"}
           placeholder={"Zadajte Váš e-mail"}
           type={"text"}
-          range={{ start: 2, end: 30 }}
           register={register}
         />
         {errors?.email && (
@@ -94,18 +99,14 @@ const FormContainer = () => {
           label="Telefónne číslo"
           register={register}
         ></PhoneContainer>
-        {/* <PhoneNumberInput id="phone" label="Telefónne číslo"></PhoneNumberInput> */}
         {errors?.phone && (
           <ErrorMessage message={errors.phone.message}></ErrorMessage>
         )}
-        <ButtonsContainer>
+        <ButtonsContainer type="nav-buttons">
           <Link to="/">
             <SecondaryButton context="Späť" />
           </Link>
-          <PrimaryButton
-            type="button"
-            context="Pokračovať"
-          />
+          <PrimaryButton type="button" context="Pokračovať" />
         </ButtonsContainer>
       </Form>
     </>

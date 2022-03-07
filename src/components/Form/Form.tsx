@@ -1,17 +1,18 @@
 import React from "react";
 import PageParagraph from "../PageUI/PageParagraph/PageParagraph";
 
-import { FormParagraph, FormWrapper } from "./StyledForm";
+import { FormWrapper } from "./StyledForm";
 
 type props = {
   children: React.ReactNode;
   title: string;
-  onSubmit: any
+  onSubmit: any;
+  onKeyPress: any;
 };
 
-const Form = ({ children, title, onSubmit }: props) => {
+const Form = ({ children, title, onSubmit, onKeyPress }: props) => {
   return (
-    <FormWrapper autoComplete="off" onSubmit={onSubmit}>
+    <FormWrapper onSubmit={onSubmit} onKeyPress={onKeyPress} >
       <PageParagraph titleParagraph={title}></PageParagraph>
       {children}
     </FormWrapper>
