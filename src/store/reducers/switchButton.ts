@@ -1,10 +1,4 @@
-import { ButtonPrimary } from "../../components/Buttons/Primary/StyledPrimaryButton";
-
-type button = {
-  value: number;
-  isActive: boolean;
-  type?: string;
-};
+import { button } from "../../types.interface";
 
 const initialState: button[] = [
   { value: 5, isActive: true, type: "btn" },

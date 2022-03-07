@@ -1,6 +1,5 @@
 import { ButtonSecondary } from "./StyledSecondaryButton";
 
-
 type props = {
   context: string;
   onClick?: any;

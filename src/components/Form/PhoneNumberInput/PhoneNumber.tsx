@@ -10,7 +10,7 @@ import {
   StyledPhoneWrapper,
   StyledFlag,
 } from "./StyledPhoneNumber";
-
+import { flag } from "../../../types.interface";
 
 type props = {
   activeFlag: flag;
@@ -20,12 +20,6 @@ type props = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   toggling: () => void;
   flags: flag[];
-};
-
-type flag = {
-  src: string;
-  prefix: string;
-  alt: string;
 };
 
 const PhoneNumber = ({

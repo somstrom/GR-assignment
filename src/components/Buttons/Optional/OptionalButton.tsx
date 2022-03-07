@@ -6,7 +6,6 @@ import {
   IconWrapper,
 } from "./StyledOptionalButton";
 
-
 type props = {
   context: string;
   icon: string;

@@ -22,32 +22,14 @@ import {
   SWITCH_ACTION_BUTTON,
   DEACTIVATE_BUTTONS,
   SWITCH_MONEY_BUTTON,
-  CHANGE_SHELTER
+  CHANGE_SHELTER,
 } from "../../store/actions";
 import TernaryButtonContainer from "../Buttons/TernaryButtonContainer";
-
-
-type shelter = {
-  id: number;
-  name: string;
-};
-
-type button = {
-  value: number;
-  isActive: boolean;
-  type: string;
-};
-
-type action = {
-  paragraph: string;
-  isActive: boolean;
-  src: string;
-  type: string;
-  id: number;
-};
+import { shelter, button, action } from "../../types.interface";
 
 const LandingPage = () => {
-  let actionButtons: action[] = useSelector(
+  const dispatch = useDispatch();
+  const actionButtons: action[] = useSelector(
     (state: any) => state.actionButtons
   );
   const moneyButtons: button[] = useSelector(
@@ -57,7 +39,6 @@ const LandingPage = () => {
     (state: any) => state.chosenShelter
   );
 
-  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<number>(0);
   const [sheltersList, setSheltersList] = useState<shelter[]>([
     { name: "empty", id: -1 },
@@ -156,18 +137,15 @@ const LandingPage = () => {
             ))}
           </ButtonsContainer>
           <ButtonsContainer type="nav-buttons">
-              <PrimaryButton
-                onClick={handleClick}
-                context="Pokračovať"
-                disabled={
-                  (actionButtons[0].isActive &&
-                    chosenShelter.name === "empty") ||
-                  (moneyButtons[6].isActive &&
-                    (inputValue === 0 ||
-                      isNaN(inputValue) ||
-                      inputValue === -1))
-                }
-              />
+            <PrimaryButton
+              onClick={handleClick}
+              context="Pokračovať"
+              disabled={
+                (actionButtons[0].isActive && chosenShelter.name === "empty") ||
+                (moneyButtons[6].isActive &&
+                  (inputValue === 0 || isNaN(inputValue) || inputValue === -1))
+              }
+            />
           </ButtonsContainer>
         </PageContent>
         <PageImage />

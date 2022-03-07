@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,33 +11,30 @@ import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton"
 import ErrorMessage from "../../components/Form/ErrorMessage/ErrorMessage";
 import PhoneContainer from "../PhoneContainer/PhoneContainer";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
-import { FILL_UP_FORMDATA, SET_ACCESSIBLE_PAGES, SET_PREVIOUS_PAGE, SET_SLIDE_ACTION_TYPE } from "../../store/actions";
-
-
-type FormData = {
-  firstname?: string;
-  lastname: string;
-  email: string;
-  phone?: number;
-};
+import {
+  FILL_UP_FORMDATA,
+  SET_ACCESSIBLE_PAGES,
+  SET_PREVIOUS_PAGE,
+  SET_SLIDE_ACTION_TYPE,
+} from "../../store/actions";
+import { formData } from "../../types.interface";
 
 const FormContainer = () => {
-  const formPrefillData: FormData = useSelector(
+  const dispatch = useDispatch();
+
+  const formPrefillData: formData = useSelector(
     (state: any) => state.formReducer
   );
-  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<formData>({
     defaultValues: formPrefillData,
     mode: "onChange",
     resolver: yupResolver(validationSchema),
   });
-
-  useEffect(() => {}, []);
 
   const onSubmit = handleSubmit((data) => {
     dispatch(FILL_UP_FORMDATA(data));

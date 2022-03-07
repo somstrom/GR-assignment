@@ -1,14 +1,10 @@
-type formData = {
-  firstname?: string;
-  lastname: string;
-  email?: string;
-  number?: number;
-};
+import { formData } from "../../types.interface";
 
 type Action = { type: string; playload: formData };
 
 const initialState = {
   lastname: "",
+  email: "",
 };
 
 export const formReducer = (state: formData = initialState, action: Action) => {

@@ -2,7 +2,6 @@ import React from "react";
 
 import { StyledPageContent } from "./StyledPageContent";
 
-
 type props = {
   children: React.ReactNode;
 };

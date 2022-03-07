@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 import { chooseShelter } from "./chooseShelter";
 import { setFlag } from "./setFlag";
 import { accessiblePages } from "./accessiblePages";
-import {slideActionReducer} from './slideActionreducer'
+import { slideActionReducer } from "./slideActionreducer";
 
 const allReducers = combineReducers({
   actionButtons: switchActionButton,

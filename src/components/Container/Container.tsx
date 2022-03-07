@@ -4,7 +4,6 @@ import { ContainerWrapper, StyledContainer } from "./StyledContainer";
 import { useSelector } from "react-redux";
 import PageIndicator from "../PageIndicator/PageIndicator";
 
-
 type props = {
   children: React.ReactNode;
 };

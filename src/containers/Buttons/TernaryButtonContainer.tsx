@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
 
-
 type props = {
   context: number;
   buttonType?: string;

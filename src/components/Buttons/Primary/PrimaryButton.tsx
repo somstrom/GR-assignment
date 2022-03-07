@@ -1,6 +1,5 @@
 import { ButtonPrimary } from "./StyledPrimaryButton";
 
-
 type props = {
   context: string;
   disabled?: boolean;

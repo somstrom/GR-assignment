@@ -5,7 +5,6 @@ import PageContent from "../../components/PageContent/PageContent";
 import Container from "../../components/Container/Container";
 import FormContainer from "../Form/FormContainer";
 
-
 const FormPage = () => {
   return (
     <>

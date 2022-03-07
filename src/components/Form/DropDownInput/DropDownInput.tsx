@@ -10,7 +10,6 @@ import {
   ListItem,
 } from "./StyledDropDown";
 
-
 type shelter = {
   id: number;
   name: string;

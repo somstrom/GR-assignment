@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -18,57 +18,22 @@ import {
   SET_PREVIOUS_PAGE,
   SET_SLIDE_ACTION_TYPE,
 } from "../../store/actions";
-
-type flag = {
-  src: string;
-  prefix: string;
-  alt: string;
-};
-
-type FormData = {
-  firstname?: string;
-  lastname: string;
-  email: string;
-  phone?: string;
-};
-
-type button = {
-  value: number;
-  isActive: boolean;
-  type?: string;
-};
-
-type action = {
-  paragraph: string;
-  isActive: boolean;
-  src: string;
-  type: string;
-  id: number;
-};
-
-type shelter = {
-  id: number;
-  name: string;
-};
+import { button, action, flag, formData, shelter } from "../../types.interface";
 
 const FinalPage = () => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState<boolean>(true);
 
-  const formData: FormData = useSelector((state: any) => state.formReducer);
-
+  const formData: formData = useSelector((state: any) => state.formReducer);
   const activeFlag: flag = useSelector((state: any) => state.activeFlag);
-
   const moneyValue: number = useSelector(
     (state: any) =>
       state.moneyButtons.find((button: button) => button.isActive).value || 0
   );
-
   const actionValue: string = useSelector(
     (state: any) =>
       state.actionButtons.find((button: action) => button.isActive).paragraph
   );
-
   const shelter: shelter = useSelector((state: any) => state.chosenShelter);
 
   const toggleChecked = () => {
@@ -81,8 +46,6 @@ const FinalPage = () => {
     handlePost();
     dispatch(RESET_ACTION);
   };
-
-  useEffect(() => {}, []);
 
   const handlePost = () => {
     console.log({

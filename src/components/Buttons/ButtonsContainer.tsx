@@ -4,9 +4,8 @@ import { StyledContainerBtn } from "./StyledButtonsContainer";
 
 type props = {
   children: React.ReactNode;
-  type?: string
+  type?: string;
 };
-
 
 const ButtonsContainer = ({ children, type }: props) => {
   const singleChildren = Children.count(children) === 1;
