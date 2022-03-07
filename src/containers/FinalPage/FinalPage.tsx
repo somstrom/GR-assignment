@@ -12,6 +12,7 @@ import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
+import Modal from "../../components/Modal/Modal";
 import {
   RESET_ACTION,
   SET_ACCESSIBLE_PAGES,
@@ -23,6 +24,9 @@ import { button, action, flag, formData, shelter } from "../../types.interface";
 const FinalPage = () => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState<boolean>(true);
+  const [modalMessage, setModalMessage] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [formStatus, setFormStatus] = useState<boolean>(false);
 
   const formData: formData = useSelector((state: any) => state.formReducer);
   const activeFlag: flag = useSelector((state: any) => state.activeFlag);
@@ -44,7 +48,6 @@ const FinalPage = () => {
     dispatch(SET_SLIDE_ACTION_TYPE("left"));
     dispatch(SET_PREVIOUS_PAGE(2));
     handlePost();
-    dispatch(RESET_ACTION);
   };
 
   const handlePost = () => {
@@ -64,15 +67,28 @@ const FinalPage = () => {
       )
       .then((response: any) => {
         console.log(response);
+        setModalMessage("Formulár s Vašimi informáciami bol úspešne odoslaný");
+        setShowModal(true);
+        setFormStatus(true);
       })
       .catch((err) => {
-        console.log(err);
+        setModalMessage(`Nastala chyba: ${err.message}`);
+        setShowModal(true);
+        setFormStatus(false);
       });
   };
 
   return (
     <>
       <Header />
+      {showModal && (
+        <Modal
+          success={formStatus}
+          handleClick={() => dispatch(RESET_ACTION)}
+          icon="/good-boy-logo.svg"
+          message={modalMessage}
+        />
+      )}
       <Container>
         <PageContent>
           <PageTitle title={"Skontrolujte si zadané údaje"} />
