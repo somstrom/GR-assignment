@@ -1,10 +1,10 @@
 import {
+  NumberLabel,
   NumberButton,
   ButtonTernary,
   TernaryButtonInput,
   ButtonTernaryLabel,
 } from "./StyledTernaryButton";
-
 
 type props = {
   context?: number;
@@ -21,21 +21,24 @@ const TernaryButton = ({
   handleButtonClick,
   isActive,
   handleChange,
-  inputLength
+  inputLength,
 }: props) => {
   if (buttonType === "number") {
     return (
       <NumberButton isActive={isActive} buttonType={buttonType}>
-        <TernaryButtonInput autoComplete="off"
-          length={inputLength}
-          onChange={handleChange}
-          onClick={handleButtonClick}
-          id="numeric-input-id"
-          defaultValue={context !== -1 ? context : ''}
-          inputMode="numeric"
-          maxLength={10}
-          isActive={isActive}
-        ></TernaryButtonInput>
+        <NumberLabel>
+          <TernaryButtonInput
+            autoComplete="off"
+            length={inputLength}
+            onChange={handleChange}
+            onClick={handleButtonClick}
+            id="numeric-input-id"
+            defaultValue={context !== -1 ? context : ""}
+            inputMode="numeric"
+            maxLength={10}
+            isActive={isActive}
+          ></TernaryButtonInput>
+          </NumberLabel>
         <ButtonTernaryLabel htmlFor="numeric-input-id">€</ButtonTernaryLabel>
       </NumberButton>
     );

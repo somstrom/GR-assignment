@@ -10,6 +10,10 @@ export const ButtonTernaryLabel = styled.label`
   padding: 1rem 1rem 1rem 0;
 `;
 
+export const NumberLabel = styled.label`
+  cursor: pointer;
+`
+
 export const ButtonTernary = styled("div")<props>`
   padding: ${(props) => (props.buttonType === "number" ? "0;" : "1rem;")}
   background: #ffffff;
@@ -39,15 +43,17 @@ export const NumberButton = styled(ButtonTernary)`
 export const TernaryButtonInput = styled.input<props>`
   -moz-appearance: textfield;
   width: ${(props) =>
-    props.length === 0 ? "0.5rem;" : props.length && props.length / 2 + "rem;"};
+    props.length === 0 ? "0.5rem;" : props.length && (props.length / 2) + 0.3 + "rem;"};
   border: none;
   color: ${(props) => (props.isActive ? "white;" : "#2f2f2f;")}
+  border-bottom: ${(props) => (props.isActive ? "solid 1px white;" : "solid 1px #9f9f9f;")}
   outline: none;
   font-style: normal;
   font-weight: 800;
-  border-radius: 8px;
+  // border-radius: 8px;
   line-height: 21px;
-  padding: 1rem 0 1rem 1rem;
+  // border-bottom: solid 1px gray;
+  margin: 1rem 0 1rem 1rem;
   background: transparent;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
