@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { StyledPageImage } from './StyledPageImage'
 
 const PageImage = () => {

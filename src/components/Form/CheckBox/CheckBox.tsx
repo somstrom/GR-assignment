@@ -1,5 +1,6 @@
 import { StyledCheckBoxInput, StyledCheckBoxLabel, StyledCheckBoxWrapper } from "./StyledCheckBox";
 
+
 type props = {
   label: string,
   id: string,

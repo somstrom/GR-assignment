@@ -1,6 +1,7 @@
 import React from "react";
 import { StyledPWrapper } from "./StyledParagraphWrapper";
 
+
 type props = {
   children: React.ReactNode;
 };

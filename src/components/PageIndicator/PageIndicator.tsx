@@ -1,6 +1,5 @@
-import React from "react";
-
 import { PageIndicatorWrapper, PageSpan } from "./StyledPageIndicator";
+
 
 type prosp = {
   activePage: boolean[];

@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
-import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import PageImage from "../../components/PageImage/PageImage";
 import PageContent from "../../components/PageContent/PageContent";
 import Container from "../../components/Container/Container";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
-import TernaryButton from "../../components/Buttons/Ternary/TernaryButton";
 import DropDownInput from "../../components/Form/DropDownInput/DropDownInput";
 import OptionalButton from "../../components/Buttons/Optional/OptionalButton";
 import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
@@ -20,13 +17,15 @@ import {
   switchMoneyButtons,
   switchActionButtons,
   SET_ACCESSIBLE_PAGES,
-  RESET_ACTION,
   DEACTIVATE_BUTTONS_ACTION,
   DEACTIVATE_NUMBER_BUTTON,
   ACTIVATE_NUMBER_BUTTON,
   SET_NUMBER_VALUE,
+  SET_SLIDE_ACTION_TYPE,
+  SET_PREVIOUS_PAGE
 } from "../../store/actions";
 import TernaryButtonContainer from "../Buttons/TernaryButtonContainer";
+
 
 type shelter = {
   id: number;
@@ -81,7 +80,9 @@ const LandingPage = () => {
   }, [inputValue]);
 
   const handleClick = () => {
-    dispatch(SET_ACCESSIBLE_PAGES([true, true, false]));
+    dispatch(SET_PREVIOUS_PAGE(0));
+    dispatch(SET_ACCESSIBLE_PAGES(1));
+    dispatch(SET_SLIDE_ACTION_TYPE("left"));
     dispatch(SET_NUMBER_VALUE(inputValue));
   };
 
@@ -110,7 +111,6 @@ const LandingPage = () => {
       <div style={{ height: "40px", width: "100%" }}></div>
       <Container>
         <PageContent>
-          <PageIndicator activePage={[true, false, false]} />
           <PageTitle title="Vyberte si možnosť, ako chcete pomôcť" />
           <ButtonsContainer>
             {actionButtons.map((button: action) => (
@@ -156,7 +156,6 @@ const LandingPage = () => {
             ))}
           </ButtonsContainer>
           <ButtonsContainer type="nav-buttons">
-            <Link to="/formular">
               <PrimaryButton
                 onClick={handleClick}
                 context="Pokračovať"
@@ -169,7 +168,6 @@ const LandingPage = () => {
                       inputValue === -1))
                 }
               />
-            </Link>
           </ButtonsContainer>
         </PageContent>
         <PageImage />

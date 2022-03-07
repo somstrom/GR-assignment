@@ -1,11 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 import CheckBox from "../../components/Form/CheckBox/CheckBox";
 import Header from "../../components/Header/Header";
-import PageIndicator from "../../components/PageIndicator/PageIndicator";
 import PageParagraph from "../../components/PageUI/PageParagraph/PageParagraph";
 import Container from "../../components/Container/Container";
 import PageImage from "../../components/PageImage/PageImage";
@@ -14,8 +12,12 @@ import PageTitle from "../../components/PageUI/PageTitle/PageTitle";
 import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton";
 import PrimaryButton from "../../components/Buttons/Primary/PrimaryButton";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
-import { RESET_ACTION, SET_ACCESSIBLE_PAGES } from "../../store/actions";
-import { valueTernary } from "react-select/dist/declarations/src/utils";
+import {
+  RESET_ACTION,
+  SET_ACCESSIBLE_PAGES,
+  SET_PREVIOUS_PAGE,
+  SET_SLIDE_ACTION_TYPE,
+} from "../../store/actions";
 
 type flag = {
   src: string;
@@ -51,7 +53,6 @@ type shelter = {
 
 const FinalPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [checked, setChecked] = useState<boolean>(true);
 
   const formData: FormData = useSelector((state: any) => state.formReducer);
@@ -68,10 +69,6 @@ const FinalPage = () => {
       state.actionButtons.find((button: action) => button.isActive).paragraph
   );
 
-  const accessiblePages: boolean[] = useSelector(
-    (state: any) => state.accessiblePages
-  );
-
   const shelter: shelter = useSelector((state: any) => state.chosenShelter);
 
   const toggleChecked = () => {
@@ -79,14 +76,13 @@ const FinalPage = () => {
   };
 
   const handleClick = () => {
+    dispatch(SET_SLIDE_ACTION_TYPE("left"));
+    dispatch(SET_PREVIOUS_PAGE(2));
     handlePost();
     dispatch(RESET_ACTION);
-    dispatch(SET_ACCESSIBLE_PAGES([true, false, false]));
   };
 
-  useEffect(() => {
-    !accessiblePages[2] && history.goBack();
-  }, []);
+  useEffect(() => {}, []);
 
   const handlePost = () => {
     console.log({
@@ -110,7 +106,7 @@ const FinalPage = () => {
           email: formData.email,
           value: moneyValue,
           ...(formData.phone && {
-            phone: activeFlag.prefix + formData.phone.split(" ").join(''),
+            phone: activeFlag.prefix + formData.phone.split(" ").join(""),
           }),
           ...(shelter.id !== -1 && { shelterID: shelter.id }),
         }
@@ -128,7 +124,6 @@ const FinalPage = () => {
       <Header />
       <Container>
         <PageContent>
-          <PageIndicator activePage={[false, false, true]} />
           <PageTitle title={"Skontrolujte si zadané údaje"} />
           <PageParagraph
             infoParagraph={actionValue}
@@ -167,16 +162,19 @@ const FinalPage = () => {
             isRequired={true}
           />
           <ButtonsContainer type="nav-buttons">
-            <Link to="/formular">
-              <SecondaryButton context={"Späť"} />
-            </Link>
-            <Link to="">
-              <PrimaryButton
-                context={"Odoslať formulár"}
-                disabled={checked}
-                onClick={handleClick}
-              />
-            </Link>
+            <SecondaryButton
+              context="Späť"
+              onClick={() => {
+                dispatch(SET_ACCESSIBLE_PAGES(1));
+                dispatch(SET_PREVIOUS_PAGE(2));
+                dispatch(SET_SLIDE_ACTION_TYPE("right"));
+              }}
+            />
+            <PrimaryButton
+              context={"Odoslať formulár"}
+              disabled={checked}
+              onClick={handleClick}
+            />
           </ButtonsContainer>
         </PageContent>
         <PageImage />

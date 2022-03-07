@@ -1,4 +1,3 @@
-import React from "react";
 import {
   OptionalButtonIcon,
   OptionalButtonTag,
@@ -6,6 +5,7 @@ import {
   OptionalButtonRight,
   IconWrapper,
 } from "./StyledOptionalButton";
+
 
 type props = {
   context: string;

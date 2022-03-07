@@ -56,10 +56,20 @@ export const setActiveFlag = (data: flag) => {
   return { type: "CHANGE_FLAG", playload: data };
 };
 
-export const SET_ACCESSIBLE_PAGES = (data: boolean[]) => {
+export const SET_ACCESSIBLE_PAGES = (data: number) => {
   return { type: "SET_ACCESSIBLE_PAGES", playload: data };
+};
+
+export const SET_PREVIOUS_PAGE = (data: number) => {
+  return { type: "SET_PREVIOUS_PAGE", playload: data };
+};
+
+export const SET_SLIDE_ACTION_TYPE = (data: string) => {
+  return { type: "SET_SLIDE_ACTION_TYPE", playload: data };
 };
 
 export const RESET_ACTION = {
   type: "RESET",
 };
+
+

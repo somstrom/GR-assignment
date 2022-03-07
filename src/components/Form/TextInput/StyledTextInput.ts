@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type props = {
-  focus: boolean;
+  focus?: boolean;
   dropdown?: boolean;
 };
 

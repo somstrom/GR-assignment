@@ -1,15 +1,16 @@
-import React from "react";
-
 import { ButtonSecondary } from "./StyledSecondaryButton";
+
 
 type props = {
   context: string;
-  type?: string;
+  onClick?: any;
 };
 
-const SecondaryButton = ({ context, type }: props) => {
+const SecondaryButton = ({ context, onClick }: props) => {
   return (
-    <ButtonSecondary>{context}</ButtonSecondary>
+    <ButtonSecondary type="button" onClick={onClick}>
+      {context}
+    </ButtonSecondary>
   );
 };
 

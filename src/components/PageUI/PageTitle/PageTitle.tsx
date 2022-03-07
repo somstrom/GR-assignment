@@ -1,5 +1,6 @@
 import { StyledPageTitle } from "./StyledPageTitle";
 
+
 type props = {
   title: string;
 };

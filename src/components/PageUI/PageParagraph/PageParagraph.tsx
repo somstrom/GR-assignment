@@ -4,6 +4,7 @@ import {
   StyledParagraphWrapper,
 } from "./StyledPageParagraph";
 
+
 type props = {
   titleParagraph?: string;
   infoParagraph?: string;

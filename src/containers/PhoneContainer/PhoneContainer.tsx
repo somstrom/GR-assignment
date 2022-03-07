@@ -4,6 +4,7 @@ import { setActiveFlag } from "../../store/actions";
 
 import PhoneNumber from "../../components/Form/PhoneNumberInput/PhoneNumber";
 
+
 type props = {
   label: string;
   id: string;
@@ -32,8 +33,6 @@ const PhoneContainer = ({ label, id, register }: props) => {
     },
   ];
   const [togleFlag, setTogleFlag] = useState<boolean>(activeFlag.alt === flags[0].alt);
-
-  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value = e.target.value

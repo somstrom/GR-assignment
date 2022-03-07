@@ -3,6 +3,7 @@ import PageParagraph from "../PageUI/PageParagraph/PageParagraph";
 
 import { FormWrapper } from "./StyledForm";
 
+
 type props = {
   children: React.ReactNode;
   title: string;

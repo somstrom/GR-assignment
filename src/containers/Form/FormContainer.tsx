@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { validationSchema } from "./ValidationSchema";
@@ -12,7 +11,13 @@ import SecondaryButton from "../../components/Buttons/Secondary/SecondaryButton"
 import ErrorMessage from "../../components/Form/ErrorMessage/ErrorMessage";
 import PhoneContainer from "../PhoneContainer/PhoneContainer";
 import ButtonsContainer from "../../components/Buttons/ButtonsContainer";
-import { fillUpFormData, SET_ACCESSIBLE_PAGES } from "../../store/actions";
+import {
+  fillUpFormData,
+  SET_ACCESSIBLE_PAGES,
+  SET_PREVIOUS_PAGE,
+  SET_SLIDE_ACTION_TYPE,
+} from "../../store/actions";
+
 
 type FormData = {
   firstname?: string;
@@ -22,12 +27,8 @@ type FormData = {
 };
 
 const FormContainer = () => {
-  const history = useHistory();
   const formPrefillData: FormData = useSelector(
     (state: any) => state.formReducer
-  );
-  const accessiblePages: boolean[] = useSelector(
-    (state: any) => state.accessiblePages
   );
   const dispatch = useDispatch();
 
@@ -37,19 +38,17 @@ const FormContainer = () => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: formPrefillData,
-    mode: "onBlur",
-    reValidateMode: "onChange",
+    mode: "onChange",
     resolver: yupResolver(validationSchema),
   });
 
-  useEffect(() => {
-    !accessiblePages[1] && history.goBack();
-  }, []);
+  useEffect(() => {}, []);
 
   const onSubmit = handleSubmit((data) => {
     dispatch(fillUpFormData(data));
-    dispatch(SET_ACCESSIBLE_PAGES([true, true, true]));
-    history.push("/odoslanie");
+    dispatch(SET_PREVIOUS_PAGE(1));
+    dispatch(SET_SLIDE_ACTION_TYPE("left"));
+    dispatch(SET_ACCESSIBLE_PAGES(2));
   });
 
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -78,7 +77,6 @@ const FormContainer = () => {
           placeholder="Zadajte Vaše priezvisko"
           type="text"
           max={30}
-          isRequired={true}
           register={register}
         />
         {errors?.lastname && (
@@ -103,10 +101,15 @@ const FormContainer = () => {
           <ErrorMessage message={errors.phone.message}></ErrorMessage>
         )}
         <ButtonsContainer type="nav-buttons">
-          <Link to="/">
-            <SecondaryButton context="Späť" />
-          </Link>
-          <PrimaryButton type="button" context="Pokračovať" />
+          <SecondaryButton
+            context="Späť"
+            onClick={() => {
+              dispatch(SET_ACCESSIBLE_PAGES(0));
+              dispatch(SET_PREVIOUS_PAGE(1));
+              dispatch(SET_SLIDE_ACTION_TYPE("right"));
+            }}
+          />
+          <PrimaryButton context="Pokračovať" />
         </ButtonsContainer>
       </Form>
     </>

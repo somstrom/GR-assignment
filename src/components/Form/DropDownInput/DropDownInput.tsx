@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { TextInputWrapper } from "../TextInput/StyledTextInput";
 import {
@@ -9,6 +9,7 @@ import {
   DropDownPlaceholder,
   ListItem,
 } from "./StyledDropDown";
+
 
 type shelter = {
   id: number;
