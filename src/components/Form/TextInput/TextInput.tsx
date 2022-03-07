@@ -15,6 +15,7 @@ type props = {
     start: number;
     end: number;
   };
+  max?: number;
   id: string;
   register: any;
 };
@@ -27,6 +28,7 @@ const TextInput = ({
   range,
   id,
   register,
+  max
 }: props) => {
   const [focus, setFocus] = useState<boolean>(false);
   return (
@@ -37,9 +39,8 @@ const TextInput = ({
           id={id}
           placeholder={placeholder}
           type={type}
+          maxLength={max}
           {...register(id)}
-          onBlur={() => setFocus(false)}
-          onFocus={() => setFocus(true)}
         />
       </TextInputWrapper>
     </>
